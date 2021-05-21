@@ -1,4 +1,5 @@
 import React from "react";
+import Sidebar from '../../components/SideBar';
 
 const RewardCenter = () => {
   return (
@@ -6,74 +7,9 @@ const RewardCenter = () => {
       <div class="Dashboard">
         <div class="Dashboard-inner-content">
           <div id="main" class="Dashboard-content">
-            {/* <!-- Sidebar --> */}
-            <div class="Dashboard-sidebar-menu relative h-full min-h-screen">
-              <div class="xl:py-2">
-                <div class="group relative sidebar-item with-children">
-                  <a href="#"
-                    class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:bg-black"
-                  >
-                    <img src="./asstes/logos/sidebar/Icon awesome-user-alt.svg" />
-                    <div class="Dashboard-sidebar-link">Dashboard</div>
-                  </a>
-                </div>
-                <div class="group relative sidebar-item with-children">
-                  <a
-                    href="#"
-                    class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:bg-black"
-                  >
-                    <img src="./asstes/logos/sidebar/Icon material-payment.svg" />
-                    <div class="Dashboard-sidebar-link">Payments</div>
-                  </a>
-                </div>
-                <div class="group relative sidebar-item with-children">
-                  <a
-                    href="#"
-                    class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:bg-black"
-                  >
-                    <img src="./asstes/logos/sidebar/Icon metro-security.svg" />
-                    <div class="Dashboard-sidebar-link">Security</div>
-                  </a>
-                </div>
-                <div class="group relative sidebar-item with-children">
-                  <a
-                    href="#"
-                    class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:bg-black"
-                  >
-                    <img src="./asstes/logos/sidebar/Icon metro-coins.svg" />
-                    <div class="Dashboard-sidebar-link">Reward Center</div>
-                  </a>
-                </div>
-                <div class="group relative sidebar-item with-children">
-                  <a
-                    href="#"
-                    class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:bg-black"
-                  >
-                    <img src="./asstes/logos/sidebar/Icon open-task.svg" />
-                    <div class="Dashboard-sidebar-link">Reward Center</div>
-                  </a>
-                </div>
-                <div class="group relative sidebar-item with-children">
-                  <a
-                    href="#"
-                    class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:bg-black"
-                  >
-                    <img src="./asstes/logos/sidebar/Icon ionic-ios-settings.svg" />
-                    <div class="Dashboard-sidebar-link">Settings</div>
-                  </a>
-                </div>
-                <div class="group relative sidebar-item with-children">
-                  <a
-                    href="#"
-                    class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:bg-black"
-                  >
-                    <img src="./asstes/logos/sidebar/Icon awesome-user-plus.svg" />
-                    <div class="Dashboard-sidebar-link">Referral</div>
-                  </a>
-                </div>
-              </div>
+          <div className="Dashboard-sidebar-menu relative h-full min-h-screen">
+              <Sidebar />
             </div>
-
             {/* <!-- Content --> */}
             <div class="Dashboard-content-box-wrapper bg-white h-full">
               <div class="Dashboard-content-box w-full text-grey-darkest">
