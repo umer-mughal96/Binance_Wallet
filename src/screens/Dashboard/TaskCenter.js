@@ -17,7 +17,7 @@ const TaskCenter = () => {
                 <div className="Payments-tabs-box">
                   <div className="payments-box-content">
                     <div className="Task-Available-img">
-                      <img src="../assets/icons/OpenTask.png" alt="" />
+                      <img src="./asstes/icons/OpenTask.png" alt="" />
                     </div>
                     <h5>No Task Available now</h5>
                   </div>

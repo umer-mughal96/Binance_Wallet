@@ -85,7 +85,7 @@ const Header = () => {
 
                     </ul>
                     <form className="form-inline my-2 my-lg-0">
-                        <a href="#">login</a>
+                        <Link to="/Exchange">login</Link>
                         <button className="btn custom-btn" type="submit">Register</button>
                         <a href="#">Download</a>
                         <a href="#">English</a>|<a href="#">USD</a>
