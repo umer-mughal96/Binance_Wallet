@@ -157,7 +157,7 @@ const Header = () => {
                 </li>
               </ul>
               <form className="form-inline my-2 my-lg-0">
-                <Link to="/exchange">login</Link>
+                <Link to="/exchange">Dashboard</Link>
                 <button className="btn custom-btn" type="submit">
                   Register
                 </button>
