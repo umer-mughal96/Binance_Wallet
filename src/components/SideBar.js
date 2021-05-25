@@ -9,72 +9,79 @@ const SideBar = () => {
       <div className="Dashboard-sidebar-menu relative h-full min-h-screen">
         <div className="xl:py-2">
           <div className="group relative sidebar-item with-children">
-            <Link to="/exchange"
+            <Link
+              to="/exchange"
               className="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:bg-black"
             >
               <img src="../assets/logos/sidebar/Icon awesome-user-alt.svg" />
               <div className="Dashboard-sidebar-link">
-                  <Link>Dashboard</Link>
+                <Link to="/exchange">Dashboard</Link>
               </div>
             </Link>
           </div>
           <div className="group relative sidebar-item with-children">
-            <Link to="/Payments"
+            <Link
+              to="/payments"
               className="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:bg-black"
             >
               <img src="../assets/logos/sidebar/Icon material-payment.svg" />
               <div className="Dashboard-sidebar-link">
-                  <Link>Payments</Link>
+                <Link to="/payments">Payments</Link>
               </div>
             </Link>
           </div>
           <div className="group relative sidebar-item with-children">
-            <Link to="/Security"
+            <Link
+              to="/security"
               className="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:bg-black"
             >
               <img src="../assets/logos/sidebar/Icon metro-security.svg" />
               <div className="Dashboard-sidebar-link">
-                  <Link>Security</Link>
+                <Link to="/security">Security</Link>
               </div>
             </Link>
           </div>
           <div className="group relative sidebar-item with-children">
-            <Link to="/rewardrenter"
+            <Link
+              to="/rewardcenter"
               className="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:bg-black"
             >
               <img src="../assets/logos/sidebar/Icon metro-coins.svg" />
               <div className="Dashboard-sidebar-link">
-                  <Link>Reward Center</Link>
+                <Link to="/rewardcenter">Reward Center</Link>
               </div>
             </Link>
           </div>
           <div className="group relative sidebar-item with-children">
-            <Link  to="/TaskCenter"
+            <Link
+              to="/taskcenter"
               className="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:bg-black"
             >
               <img src="../assets/logos/sidebar/Icon open-task.svg" />
               <div className="Dashboard-sidebar-link">
-              <Link>Task Center</Link>
+                <Link to="/taskcenter">Task Center</Link>
               </div>
             </Link>
           </div>
           <div className="group relative sidebar-item with-children">
-            <Link  to="/Settings"
+            <Link
+              to="/settings"
               className="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:bg-black"
             >
               <img src="../assets/logos/sidebar/Icon ionic-ios-settings.svg" />
               <div className="Dashboard-sidebar-link">
-                <Link>Settings</Link>
+                <Link to="/settings">Settings</Link>
               </div>
             </Link>
           </div>
           <div className="group relative sidebar-item with-children">
-            <Link to=""
+            <Link
+              to="/"
               className="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:bg-black"
             >
               <img src="../assets/logos/sidebar/Icon awesome-user-plus.svg" />
               <div className="Dashboard-sidebar-link">
-                <Link>Referral</Link>
+                <Link to="/">Referral</Link>
               </div>
             </Link>
           </div>

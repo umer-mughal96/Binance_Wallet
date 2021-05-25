@@ -20,7 +20,7 @@ const Routes = () => {
         <Route path="/markets" component={Markets} />
         <Route path="/payments" component={Payments} />
         <Route path="/exchange" component={Exchange} />
-        <Route path="/rewardrenter" component={RewardCenter} />
+        <Route path="/rewardcenter" component={RewardCenter} />
         <Route path="/security" component={Security} />
         <Route path="/settings" component={Settings} />
         <Route path="/taskcenter" component={TaskCenter} />
