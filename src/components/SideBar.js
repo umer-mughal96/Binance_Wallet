@@ -6,7 +6,7 @@ const SideBar = () => {
   return (
     <div>
       {/* <!-- Sidebar --> */}
-      <div className="Dashboard-sidebar-menu relative h-full min-h-screen">
+      <div className="Dashboard-sidebar-menu">
         <div className="xl:py-2">
           <div className="group relative sidebar-item with-children">
             <Link

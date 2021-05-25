@@ -1,8 +1,8 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import Landing from '../screens/Landing';
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import Landing from "../screens/Landing";
 import Markets from "../screens/Markets";
 import Payments from "../screens/Dashboard/Payments";
 import Exchange from "../screens/Dashboard/Exchange";
@@ -10,11 +10,19 @@ import RewardCenter from "../screens/Dashboard/RewardCenter";
 import Security from "../screens/Dashboard/Security";
 import Settings from "../screens/Dashboard/Settings";
 import TaskCenter from "../screens/Dashboard/TaskCenter";
+import { withRouter } from "react-router-dom";
 
-const Routes = () => {
+const Routes = withRouter(({ location }) => {
   return (
-    <BrowserRouter>
-      <Header />
+    <Fragment>
+      {location.pathname == "/payments" ||
+      location.pathname == "/exchange" ||
+      location.pathname == "/rewardcenter" ||
+      location.pathname == "/settings" ||
+      location.pathname == "/taskcenter" ||
+      location.pathname == "/security" ? null : (
+        <Header />
+      )}
       <Switch>
         <Route exact path="/" component={Landing} />
         <Route path="/markets" component={Markets} />
@@ -25,9 +33,16 @@ const Routes = () => {
         <Route path="/settings" component={Settings} />
         <Route path="/taskcenter" component={TaskCenter} />
       </Switch>
+        {location.pathname == "/payments" ||
+        location.pathname == "/exchange" ||
+        location.pathname == "/rewardcenter" ||
+        location.pathname == "/settings" ||
+        location.pathname == "/taskcenter" ||
+        location.pathname == "/security" ? null : (
       <Footer />
-    </BrowserRouter>
+      )}
+    </Fragment>
   );
-};
+});
 
 export default Routes;

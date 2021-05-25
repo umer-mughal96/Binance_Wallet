@@ -1,4 +1,5 @@
 import React from "react";
+import NsideBar from "../../components/NsideBar";
 import Sidebar from '../../components/SideBar';
 
 const RewardCenter = () => {
@@ -7,8 +8,8 @@ const RewardCenter = () => {
       <div class="Dashboard">
         <div class="Dashboard-inner-content">
           <div id="main" class="Dashboard-content">
-          <div className="Dashboard-sidebar-menu relative h-full min-h-screen">
-              <Sidebar />
+          <div className="Dashboard-sidebar-menu relative">
+              <NsideBar/>
             </div>
             {/* <!-- Content --> */}
             <div class="Dashboard-content-box-wrapper bg-white h-full">

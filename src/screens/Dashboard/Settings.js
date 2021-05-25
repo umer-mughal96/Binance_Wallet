@@ -1,4 +1,5 @@
 import React from "react";
+import NsideBar from "../../components/NsideBar";
 import Sidebar from '../../components/SideBar';
 
 const Settings = () => {
@@ -7,8 +8,8 @@ const Settings = () => {
       <div className="Dashboard">
         <div className="Dashboard-inner-content">
           <div id="main" className="Dashboard-content">
-          <div className="Dashboard-sidebar-menu relative h-full min-h-screen">
-              <Sidebar />
+          <div className="Dashboard-sidebar-menu relative">
+              <NsideBar/>
             </div>
             {/* <!-- Content --> */}
             <div className="Dashboard-content-box-wrapper bg-white h-full">
