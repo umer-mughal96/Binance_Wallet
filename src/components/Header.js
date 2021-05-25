@@ -31,9 +31,9 @@ const Header = () => {
             >
               <ul className="navbar-nav mr-auto">
                 <li className="nav-item dropdown">
-                  <a
+                  <Link
+                    to="/"
                     className="nav-link dropdown-toggle"
-                    href="#"
                     id="navbarDropdown"
                     role="button"
                     data-toggle="dropdown"
@@ -41,7 +41,7 @@ const Header = () => {
                     aria-expanded="false"
                   >
                     Buy Crypto
-                  </a>
+                  </Link>
                   <div
                     className="dropdown-menu"
                     aria-labelledby="navbarDropdown"
@@ -58,7 +58,7 @@ const Header = () => {
                     </a>
                   </div>
                 </li>
-                <li className="nav-item dropdown">
+                <li className="nav-item dropdown single-menu">
                   {/* <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Markets
