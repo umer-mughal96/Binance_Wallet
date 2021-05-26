@@ -13,13 +13,19 @@ const NsideBar = withRouter(({ location, history }) => {
       setActive("payments");
     }
     if (location.pathname == "/security") {
-        setActive("security");
+      setActive("security");
     }
-    if (location.pathname == "/settings") {
-    setActive("settings");
+    if (location.pathname == "/rewardcenter") {
+      setActive("rewardcenter");
     }
     if (location.pathname == "/taskcenter") {
-        setActive("taskcenter");
+      setActive("taskcenter");
+    }
+    if (location.pathname == "/settings") {
+      setActive("settings");
+    }
+    if (location.pathname == "/referral") {
+      setActive("referral");
     }
   }, [location.pathname]);
   return (
@@ -28,12 +34,17 @@ const NsideBar = withRouter(({ location, history }) => {
         <i className="fa fa-bars"></i>
       </div>
       <nav className="s-sidebar__nav Dashboard-sidbar-wrapper">
+        <div className="sidebar-logo-img">
+          <Link to="/">
+            <img src="./asstes/logos/company-logo.png" alt="" />
+          </Link>
+        </div>
         <ul>
-          <li>
+          {/* <li>
             <Link to="/">
               <img src="./asstes/logos/company-logo.png" alt="" />
             </Link>
-          </li>
+          </li> */}
           <li>
             <div
               className={
@@ -44,8 +55,10 @@ const NsideBar = withRouter(({ location, history }) => {
               }}
             >
               {" "}
-              <i className="fab fa-stumbleupon-circle"></i>
-              <span>Dashboard</span>{" "}
+              <span className="Dashboard-sidebar-link">
+                <img src="./asstes/logos/sidebar/Icon awesome-user-alt.svg" />{" "}
+                Dashboard
+              </span>{" "}
             </div>
           </li>
           <li>
@@ -58,8 +71,9 @@ const NsideBar = withRouter(({ location, history }) => {
               }}
             >
               {" "}
-              <i className="fas fa-exchange-alt"></i>
-              <span>Payments</span>{" "}
+              <span>
+              <img src="./asstes/logos/sidebar/Icon material-payment.svg" />
+              Payments</span>{" "}
             </div>
           </li>
           <li>
@@ -72,8 +86,41 @@ const NsideBar = withRouter(({ location, history }) => {
               }}
             >
               {" "}
-              <i className="fas fa-exchange-alt"></i>
-              <span>Security</span>{" "}
+              <span>
+              <img src="./asstes/logos/sidebar/Icon metro-security.svg" />
+              Security</span>{" "}
+            </div>
+          </li>
+          <li>
+            <div
+              className={
+                active == "rewardcenter" ? "sidebar-active" : "s-sidebar__nav-link"
+              }
+              onClick={(e) => {
+                history.push("/rewardcenter");
+              }}
+            >
+              {" "}
+              <span>
+              <img src="./asstes/logos/sidebar/Icon metro-coins.svg" />
+              Reward Center</span>{" "}
+            </div>
+          </li>
+          <li>
+            <div
+              className={
+                active == "taskcenter"
+                  ? "sidebar-active"
+                  : "s-sidebar__nav-link"
+              }
+              onClick={(e) => {
+                history.push("/taskcenter");
+              }}
+            >
+              {" "}
+              <span>
+              <img src="./asstes/logos/sidebar/Icon open-task.svg" />
+              Task Center</span>{" "}
             </div>
           </li>
           <li>
@@ -86,41 +133,27 @@ const NsideBar = withRouter(({ location, history }) => {
               }}
             >
               {" "}
-              <i className="fas fa-exchange-alt"></i>
-              <span>Settings</span>{" "}
+              <span>
+              <img src="./asstes/logos/sidebar/Icon ionic-ios-settings.svg" />
+              Settings</span>{" "}
             </div>
           </li>
           <li>
             <div
               className={
-                active == "taskcenter" ? "sidebar-active" : "s-sidebar__nav-link"
+                active == "referral" ? "sidebar-active" : "s-sidebar__nav-link"
               }
               onClick={(e) => {
-                history.push("/taskcenter");
+                history.push("/referral");
               }}
             >
               {" "}
-              <i className="fas fa-exchange-alt"></i>
-              <span>Task Center</span>{" "}
+              <span>
+              <img src="./asstes/logos/sidebar/Icon awesome-user-plus.svg" />
+              Referral</span>{" "}
             </div>
           </li>
         </ul>
-        {/* <div className="row sidebar-button">
-          <div className="offset-2 col-8">
-            <Link to="/" className="btn d-block">
-              Get plans
-            </Link>
-          </div>
-          <div className="offset-2 col-8">
-            <Link to="/knowledge" className="btn d-block">
-              Help Center
-            </Link>
-          </div>
-          <div className="logout offset-3 col-6 mt-2 pl-4">
-            <i className="fas fa-sign-out-alt mr-1"></i>
-            Logout
-          </div>
-        </div> */}
       </nav>
     </div>
   );

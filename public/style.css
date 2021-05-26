@@ -796,6 +796,11 @@ footer .footer-links li i{
         width: 98%;
         margin: 0 auto;
     }
+    .Dashboard-content-box .Dashboard-content-box-heading {
+        font-size: 26px;
+        margin-bottom: 30px;
+        font-family: "poppins-light";
+    }
  }
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) and (max-width: 767.98px) { 
@@ -876,6 +881,11 @@ footer .footer-links li i{
     --------------------------------------------------------------*/
     .featured-services .icon-box {
         min-height: 200px;
+    }
+    .Dashboard-content-box .Dashboard-content-box-heading {
+        font-size: 20px;
+        margin-bottom: 30px;
+        font-family: "poppins-light";
     }
 }
 /********************************* Crypto Dashboard *********************************/
@@ -2389,10 +2399,21 @@ th.table-row p {
 .s-sidebar__nav-link span {
     position: absolute;
     top: 50%;
-    left: 4em;
+    left: 1.2em;
+    display: flex;
+    align-items: baseline;
     transform: translateY(-50%);
+    font-size: 14px;
+    font-family: "poppins-semibold";
 }
-
+.sidebar-logo-img{
+    width: 90%;
+    margin: 15px auto;
+}
+.s-sidebar__nav ul li .sidebar-logo-img img{
+    width: 100%;
+    height: 100%;
+}
 .s-sidebar__nav-link:hover {
     background: var(--white-color);
     color: #222d71 !important;
@@ -2402,15 +2423,22 @@ th.table-row p {
     position: relative;
     display: inline-block;
     width: 100%;
-    height: 3em;
-    color: white;
-    background-color: #1E488A;
+    height: 2.5em;
+    color: black;
+    background-color: #f3f3f3;
+    border-radius: 20px;
+    font-size: 14px;
+    font-family: "poppins-semibold";
 }
 .sidebar-active span{
     position: absolute;
     top: 50%;
-    left: 4em;
+    left: 1.2em;
     transform: translateY(-50%);
+    font-size: 14px;
+    font-family: "poppins-semibold";
+    display: flex;
+    align-items: baseline;
 }
 .sidebar-active > i{
     position: absolute;
@@ -2462,9 +2490,9 @@ a.logout:hover {
     transition: 0.2s;
 }
 .s-sidebar__nav ul li img {
-    width: 95%;
-    height: 100%;
-    margin: 10px auto;
+    width: 14px;
+    height: 14px;
+    margin: 0px 10px 0px 0px;
 }
 .net-profit h5 {
     font-size: 14px;
@@ -2924,11 +2952,11 @@ div.floating-action-menu.active > .action-button > .btn-floating > i {
     }
 
     .s-sidebar__nav {
-        width: 12em;
+        width: 15em;
     }
 
     .s-sidebar__nav ul {
-        top: 2em;
+        top: 5em;
     }
 }
 @media (max-width: 1200px) {
@@ -3100,6 +3128,13 @@ div.floating-action-menu.active > .action-button > .btn-floating > i {
         font-size: 18px;
         margin-bottom: 30px;
         font-family: "poppins-light";
+    }
+}
+@media (max-width: 375px) {
+    .Dashboard-content-box .Dashboard-content-box-heading {
+        font-size: 15px;
+        margin-bottom: 15px;
+        font-family: "poppins-semibold";
     }
 }
 /********************************* Crypto Dashboard *********************************/
