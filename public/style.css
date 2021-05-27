@@ -206,6 +206,16 @@ nav ul li ul li a {
 } */
 /* Header */
 /* header */
+#navbarSupportedContent ul{
+    padding: 0px;
+    text-align: left;
+}
+#navbarSupportedContent ul li{
+    margin: 3px 0px;
+}
+#navbarSupportedContent .right-nav-menus li{
+    margin: 0px 5px;
+}
 .Dashboard {
     text-align: left;
 }
@@ -311,7 +321,6 @@ section{
 --------------------------------------------------------------*/
 .hero{
     background-image: linear-gradient(360deg, #000000e0, #000000e0), url(./asstes/images/header-image.jpg);
-    height: 500px;
     color: #ffffff;
     padding: 120px 0px;
     width: 100%;
@@ -323,6 +332,10 @@ section{
 .hero-form .form-row{
     align-items: center;
 }
+.hero-form .form-row div{
+    margin-top: 10px;
+}
+
 .hero-input{
     width: 100%;
     border: none;
@@ -333,13 +346,11 @@ section{
     font-family: "poppins-semibold";
 }
 .positin-section{
-    position: absolute;
-    bottom: -13%;
-    padding: 0px;
-    left: 9%;
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 80px;
 }
 section.feature {
-    padding-top: 13%;
     padding-bottom: 0px;
 }
 .Crypto-rates-box{
@@ -789,6 +800,62 @@ footer .footer-links li i{
     }
 }
 @media (max-width: 768px)  {
+    #navbarSupportedContent .right-nav-menus li{
+        margin: 0px 0px;
+    }
+    .header-row-first-colm {
+        margin-left: 0px;
+    }
+    .positin-section .Crypto-rates-box{
+        padding: 0px;
+    }
+    .hero-heading {
+        font-family: "poppins-semibold";
+        line-height: 55px;
+        font-size: 26px;
+    }
+    .compuny-rate{
+        width: 85%;
+    }
+    .featured-services-heading {
+        font-size: 26px;
+        margin-bottom: 46px;
+        font-family: "poppins-semibold";
+    }
+    .featured-services{
+        padding: 30px 30px;
+    }
+    .positin-section {
+        width: 90%;
+        margin: 0 auto;
+        padding-top: 40px;
+        padding-bottom: 0px;
+    }
+    .header-row .col-md-3.col {
+        font-size: 14px;
+        font-family: "poppins-semibold";
+    }
+    .call-to-action-heading {
+        font-size: 26px;
+        margin-bottom: 10px;
+        font-family: "poppins-semibold";
+    }
+    .featured-services-inner {
+        background-color: white;
+        border-radius: 20px;
+        padding: 30px 20px;
+    }
+    .rates-box {
+        display: flex;
+        align-items: center;
+        width: 100%;
+    }
+    .Crypto-rates {
+        display: flex;
+        margin: 40px 0px;
+        align-items: center;
+        padding: 15px 0px;
+    }
     body .Dashboard-content-flex-box {
         display: block;
     }
@@ -1238,7 +1305,13 @@ th.table-row p{
 @media 
 only screen and (max-width: 760px),
 (min-device-width: 768px) and (max-device-width: 1024px)  {
-
+    .Crypto-rates-box {
+        background-color: white;
+        border-radius: 20px;
+        padding: 10px 30px;
+        max-width: 1206px;
+        margin: 0 auto;
+    }
 	/* Force table to not be like tables anymore */
 	table, thead, tbody, th, td, tr { 
 		display: block; 
@@ -3120,6 +3193,11 @@ div.floating-action-menu.active > .action-button > .btn-floating > i {
     z-index: 99;
 }
 @media (max-width: 425px) {
+    .featured-services-heading {
+        font-size: 20px;
+        margin-bottom: 46px;
+        font-family: "poppins-semibold";
+    }
     #main {
         display: block;
         grid-template-columns: none;
@@ -3129,12 +3207,45 @@ div.floating-action-menu.active > .action-button > .btn-floating > i {
         margin-bottom: 30px;
         font-family: "poppins-light";
     }
+    .btn-wrapper{
+        display: flex;
+        align-items: center;
+    }
+    .hero-heading {
+        font-family: "poppins-semibold";
+        line-height: 55px;
+        font-size: 20px;
+    }
+    .currency-name {
+        font-size: 14px;
+        font-family: "poppins-light";
+    }
+    .currency-compuny {
+        font-size: 14px;
+        font-family: "poppins-semibold";
+    }
+    .last-price span {
+        font-size: 14px;
+        font-family: "poppins-regular";
+    }
+    .change-percent span {
+        font-size: 14px;
+        font-family: "poppins-regular";
+    }    
 }
 @media (max-width: 375px) {
     .Dashboard-content-box .Dashboard-content-box-heading {
         font-size: 15px;
         margin-bottom: 15px;
         font-family: "poppins-semibold";
+    }
+    .featured-services {
+        padding: 0px 10px 20px;
+    }
+    .featured-services-inner {
+        background-color: white;
+        border-radius: 20px;
+        padding: 30px 10px;
     }
 }
 /********************************* Crypto Dashboard *********************************/

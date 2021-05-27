@@ -156,14 +156,22 @@ const Header = () => {
                   </div>
                 </li>
               </ul>
-              <form className="form-inline my-2 my-lg-0">
-                <Link to="/exchange">Dashboard</Link>
-                <button className="btn custom-btn" type="submit">
-                  Register
-                </button>
-                <a href="#">Download</a>
-                <a href="#">English</a>|<a href="#">USD</a>
-              </form>
+              <ul className="navbar-nav right-nav-menus">
+                <li className="nav-item">
+                  <Link to="/exchange">Dashboard</Link>
+                </li>
+                <li className="nav-item">
+                  <button className="btn custom-btn" type="submit">
+                    Register
+                  </button>
+                </li>
+                <li className="nav-item">
+                  <a href="#">Download</a>
+                </li>
+                <li className="nav-item">
+                  <a href="#">English</a> | <a href="#">USD</a>
+                </li>
+              </ul>
             </div>
           </div>
         </nav>

@@ -45,10 +45,11 @@ const Landing = () => {
         </div>
       </section>
       {/* <!------------------------ End Hero Section ----------------------->  */}
-
+      {/* <OwlCarouselSlider /> */}
+      <div class="content">
       <section class="positin-section">
         <div class="Crypto-rates-box">
-          <div class="Crypto-rates">
+          <div class="Crypto-rates row">
             <div class="col">
               <div class="rates-box">
                 <div class="compuny-logo">
@@ -125,7 +126,7 @@ const Landing = () => {
                 </div>
               </div>
             </div>
-            <div class="col">
+            {/* <div class="col">
               <div class="rates-box">
                 <div class="compuny-logo">
                   <img src="./asstes/images/BTC.png" />
@@ -143,9 +144,9 @@ const Landing = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
-          <div class="Crypto-rates">
+          <div class="Crypto-rates row">
             <div class="col">
               <div class="rates-box">
                 <div class="compuny-logo">
@@ -222,7 +223,7 @@ const Landing = () => {
                 </div>
               </div>
             </div>
-            <div class="col">
+            {/* <div class="col">
               <div class="rates-box">
                 <div class="compuny-logo">
                   <img src="./asstes/images/BTC.png" />
@@ -240,12 +241,10 @@ const Landing = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
-      {/* <OwlCarouselSlider /> */}
-      <div class="content">
         {/* <!------------------------ Feature Section -----------------------> */}
         <section class="feature">
           <div class="container-fluid container-feature-slider">
@@ -282,7 +281,7 @@ const Landing = () => {
                   <div class="currency-table-data-row">
                     <a href="#" class="d-block">
                       <div class="row">
-                        <div class="col-md-3 col">
+                        <div class="col-md-3">
                           <div class="currency-name-wrap">
                             <div class="currency-icon">
                               <img src="./asstes/images/BNB.png" alt="" />
@@ -291,17 +290,17 @@ const Landing = () => {
                             <span class="currency-name">BNB</span>
                           </div>
                         </div>
-                        <div class="col-md-3 col">
+                        <div class="col-md-3">
                           <div class="last-price">
                             <span>$571.16</span>
                           </div>
                         </div>
-                        <div class="col-md-3 col">
+                        <div class="col-md-3">
                           <div class="change-percent">
                             <span class="down-rate">+12.33%</span>
                           </div>
                         </div>
-                        <div class="col-md-3 col d-none d-sm-none d-md-block">
+                        <div class="col-md-3 d-none d-sm-none d-md-block">
                           <div class="market-graph">
                             <div class="graph-img">
                               <img src="./asstes/images/tbl-grap.svg" />
@@ -314,7 +313,7 @@ const Landing = () => {
                   <div class="currency-table-data-row">
                     <a href="#" class="d-block">
                       <div class="row">
-                        <div class="col-md-3 col">
+                        <div class="col-md-3">
                           <div class="currency-name-wrap">
                             <div class="currency-icon">
                               <img src="./asstes/images/BNB.png" alt="" />
@@ -323,17 +322,17 @@ const Landing = () => {
                             <span class="currency-name">BNB</span>
                           </div>
                         </div>
-                        <div class="col-md-3 col">
+                        <div class="col-md-3">
                           <div class="last-price">
                             <span>$571.16</span>
                           </div>
                         </div>
-                        <div class="col-md-3 col">
+                        <div class="col-md-3">
                           <div class="change-percent">
                             <span class="down-rate">+12.33%</span>
                           </div>
                         </div>
-                        <div class="col-md-3 col d-none d-sm-none d-md-block">
+                        <div class="col-md-3 d-none d-sm-none d-md-block">
                           <div class="market-graph">
                             <div class="graph-img">
                               <img src="./asstes/images/tbl-grap.svg" />
@@ -346,7 +345,7 @@ const Landing = () => {
                   <div class="currency-table-data-row">
                     <a href="#" class="d-block">
                       <div class="row">
-                        <div class="col-md-3 col">
+                        <div class="col-md-3">
                           <div class="currency-name-wrap">
                             <div class="currency-icon">
                               <img src="./asstes/images/BNB.png" alt="" />
@@ -355,17 +354,17 @@ const Landing = () => {
                             <span class="currency-name">BNB</span>
                           </div>
                         </div>
-                        <div class="col-md-3 col">
+                        <div class="col-md-3">
                           <div class="last-price">
                             <span>$571.16</span>
                           </div>
                         </div>
-                        <div class="col-md-3 col">
+                        <div class="col-md-3">
                           <div class="change-percent">
                             <span class="up-rate">+12.33%</span>
                           </div>
                         </div>
-                        <div class="col-md-3 col d-none d-sm-none d-md-block">
+                        <div class="col-md-3 d-none d-sm-none d-md-block">
                           <div class="market-graph">
                             <div class="graph-img">
                               <img src="./asstes/images/tbl-grap.svg" />
@@ -378,7 +377,7 @@ const Landing = () => {
                   <div class="currency-table-data-row">
                     <a href="#" class="d-block">
                       <div class="row">
-                        <div class="col-md-3 col">
+                        <div class="col-md-3">
                           <div class="currency-name-wrap">
                             <div class="currency-icon">
                               <img src="./asstes/images/BNB.png" alt="" />
@@ -387,17 +386,17 @@ const Landing = () => {
                             <span class="currency-name">BNB</span>
                           </div>
                         </div>
-                        <div class="col-md-3 col">
+                        <div class="col-md-3">
                           <div class="last-price">
                             <span>$571.16</span>
                           </div>
                         </div>
-                        <div class="col-md-3 col">
+                        <div class="col-md-3">
                           <div class="change-percent">
                             <span class="up-rate">+12.33%</span>
                           </div>
                         </div>
-                        <div class="col-md-3 col d-none d-sm-none d-md-block">
+                        <div class="col-md-3 d-none d-sm-none d-md-block">
                           <div class="market-graph">
                             <div class="graph-img">
                               <img src="./asstes/images/tbl-grap.svg" />
@@ -410,7 +409,7 @@ const Landing = () => {
                   <div class="currency-table-data-row">
                     <a href="#" class="d-block">
                       <div class="row">
-                        <div class="col-md-3 col">
+                        <div class="col-md-3">
                           <div class="currency-name-wrap">
                             <div class="currency-icon">
                               <img src="./asstes/images/BNB.png" alt="" />
@@ -419,17 +418,17 @@ const Landing = () => {
                             <span class="currency-name">BNB</span>
                           </div>
                         </div>
-                        <div class="col-md-3 col">
+                        <div class="col-md-3">
                           <div class="last-price">
                             <span>$571.16</span>
                           </div>
                         </div>
-                        <div class="col-md-3 col">
+                        <div class="col-md-3">
                           <div class="change-percent">
                             <span class="down-rate">+12.33%</span>
                           </div>
                         </div>
-                        <div class="col-md-3 col d-none d-sm-none d-md-block">
+                        <div class="col-md-3 d-none d-sm-none d-md-block">
                           <div class="market-graph">
                             <div class="graph-img">
                               <img src="./asstes/images/tbl-grap.svg" />
@@ -442,7 +441,7 @@ const Landing = () => {
                   <div class="currency-table-data-row">
                     <a href="#" class="d-block">
                       <div class="row">
-                        <div class="col-md-3 col">
+                        <div class="col-3">
                           <div class="currency-name-wrap">
                             <div class="currency-icon">
                               <img src="./asstes/images/BNB.png" alt="" />
@@ -451,17 +450,17 @@ const Landing = () => {
                             <span class="currency-name">BNB</span>
                           </div>
                         </div>
-                        <div class="col-md-3 col">
+                        <div class="col-3">
                           <div class="last-price">
                             <span>$571.16</span>
                           </div>
                         </div>
-                        <div class="col-md-3 col">
+                        <div class="col-3">
                           <div class="change-percent">
                             <span class="down-rate">+12.33%</span>
                           </div>
                         </div>
-                        <div class="col-md-3 col d-none d-sm-none d-md-block">
+                        <div class="col-3 d-none d-sm-none d-md-block">
                           <div class="market-graph">
                             <div class="graph-img">
                               <img src="./asstes/images/tbl-grap.svg" />
