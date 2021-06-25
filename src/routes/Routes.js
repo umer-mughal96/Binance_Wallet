@@ -11,6 +11,8 @@ import Security from "../screens/Dashboard/Security";
 import Settings from "../screens/Dashboard/Settings";
 import TaskCenter from "../screens/Dashboard/TaskCenter";
 import { withRouter } from "react-router-dom";
+import Faq from "../screens/Faq";
+import Trade from "../screens/Trade";
 
 const Routes = withRouter(({ location }) => {
   return (
@@ -26,6 +28,8 @@ const Routes = withRouter(({ location }) => {
       <Switch>
         <Route exact path="/" component={Landing} />
         <Route path="/markets" component={Markets} />
+        <Route path="/faq" component={Faq} />
+        <Route path="/trade" component={Trade} />
         <Route path="/payments" component={Payments} />
         <Route path="/exchange" component={Exchange} />
         <Route path="/rewardcenter" component={RewardCenter} />
@@ -38,6 +42,7 @@ const Routes = withRouter(({ location }) => {
         location.pathname == "/rewardcenter" ||
         location.pathname == "/settings" ||
         location.pathname == "/taskcenter" ||
+        location.pathname == "/trade" ||
         location.pathname == "/security" ? null : (
       <Footer />
       )}
