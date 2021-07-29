@@ -42,10 +42,7 @@ const Routes = withRouter(({ location }) => {
         location.pathname == "/rewardcenter" ||
         location.pathname == "/settings" ||
         location.pathname == "/taskcenter" ||
-        location.pathname == "/security" ? null : ""
-     
-     }
-      )}
+        location.pathname == "/security" ? null : ""}
     </Fragment>
   );
 });

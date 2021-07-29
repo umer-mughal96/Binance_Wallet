@@ -8,7 +8,7 @@ const Header = () => {
       <header>
         <nav className="navbar navbar-expand-lg custom-nav">
           <div className="container-fluid">
-            <Link className="navbar-brand" to="/">
+            <Link className="navbar-brand Site-Logo" to="/">
               <img src="./asstes/logos/company-logo.png" alt="" />
             </Link>
             {/* <button
