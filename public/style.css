@@ -21,7 +21,7 @@
 li{
     list-style-type: none;
 }
-button:focus{
+button:focus,.start-trading button:focus{
     outline: none;
 }
 input:focus{
@@ -3270,3 +3270,385 @@ div.floating-action-menu.active > .action-button > .btn-floating > i {
     }
 }
 /********************************* Crypto Dashboard *********************************/
+/* FAQ Page Start */
+.faq-page.markets-page-contant-container {
+    width: auto;
+}
+.portal h4{
+    font-size: 36px;
+    color: #fff;
+}
+.portal p{
+    color: #fff;
+    font-size: 14px;
+}
+.portal form {
+    max-width: 600px;
+    margin:70px auto;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 0px 6px #00000029;
+    border-radius: 14px;
+    padding: 40px 45px;
+}
+.portal form .form-group label{
+    display: flex;
+    font-size: 14px;
+    font-weight: 600;
+}
+.portal form button {
+    background: #1E488A 0% 0% no-repeat padding-box;
+    box-shadow: 0px 0px 6px #00000029;
+    border-radius: 14px;
+    width: 60%;
+    font-size: 14px;
+    margin-top: 15px;
+    transition: 1s;
+}
+.portal form button:hover{
+    background:transparent;
+    color:#1E488A ;
+}
+.portal form input ,.portal form select {
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 0px 6px #00000029;
+    border-radius: 14px;
+    font-size: 14px;
+}
+.portal form select option{
+    font-size: 14px;
+}
+.portal form select{
+    margin-top: 28px;
+}
+.faq h3 {
+    font-size: 40px;
+    color: #fff;
+    margin-bottom: 5px;
+}
+.faq-heading {
+    font-weight: 400;
+    font-size: 14px;
+     -webkit-transition: text-indent 0.2s;
+    color: #fff;
+    font-weight: 600;
+  }
+  
+  .faq-text {
+    font-weight: 100;
+    color: #ffffff9c;
+    width: 100%;
+    margin-bottom: 30px;
+    line-height: 20px;
+    font-size: 14px;
+}
+  
+  .faq {
+    max-width: 950px;
+    margin: 0 auto;
+    text-align: left;
+    border-radius: 4px;
+    position: relative;
+    border: 0px solid #E1E1E1;
+  }
+  .faq label {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    height: 56px;
+    padding-top:1px;
+    /* background-color: #FAFAFA; */
+    border-top: 1px solid #707070;
+    margin-bottom: 0px;
+  }
+  
+  .faq input[type="checkbox"] {
+    display: none;
+  }
+  
+  .faq .faq-arrow {
+    width: 7px;
+    height: 7px;
+    transition: -webkit-transform 0.8s;
+    transition: transform 0.8s;
+    transition: transform 0.8s, -webkit-transform 0.8s;
+    -webkit-transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    border-top: 1px solid rgb(255 255 255 / 100%);
+    border-right: 1px solid rgb(255 255 255 / 100%);
+    float: right;
+    position: relative;
+    top: -14px;
+    right: 2px;
+    -webkit-transform: rotate( 
+45deg
+ );
+    transform: rotate( 
+135deg
+ );
+}
+  
+   .faq input[type="checkbox"]:checked + label > .faq-arrow {
+    transition: -webkit-transform 0.8s;
+    transition: transform 0.8s;
+    transition: transform 0.8s, -webkit-transform 0.8s;
+    -webkit-transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    -webkit-transform: rotate(315deg);
+            transform: rotate(315deg);
+  }
+   .faq input[type="checkbox"]:checked + label {
+    display: block;
+    background: transparent;
+    color: #4f7351;
+    height: 90px;
+    transition: height 0.8s;
+    -webkit-transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+  
+   .faq input[type='checkbox']:not(:checked) + label {
+    display: block;
+    transition: height 0.8s;
+    height: 25px;
+    -webkit-transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+  
+  .faq::-webkit-scrollbar {
+    display: none;
+  }
+  /* Faq Page End */
+  .f-dropdown {
+    --max-scroll: 3;
+    position: relative;
+    z-index: 10;
+  }
+  .f-dropdown select {
+    display: none;
+  }
+  .f-dropdown > span {
+    cursor: pointer;
+    padding: 2px 12px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    color: #bbb;
+    border: 1px solid #ccc;
+    transition: color 0.2s ease, border-color 0.2s ease;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 0px 6px #00000029;
+    border-radius: 14px;
+    font-size: 14px;
+    height: 36px;
+    margin-top: 28px;
+  }
+  .f-dropdown > span img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+  }
+  .f-dropdown > span:before, .f-dropdown > span:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 8px;
+    height: 2px;
+    border-radius: 1px;
+    top: 50%;
+    right: 12px;
+    background: #000;
+    transition: all 0.3s ease;
+  }
+  .f-dropdown > span:before {
+    margin-right: 4px;
+    transform: scale(0.96, 0.8) rotate(50deg);
+  }
+  .f-dropdown > span:after {
+    transform: scale(0.96, 0.8) rotate(-50deg);
+  }
+  .f-dropdown ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    max-height: calc(var(--max-scroll) * 46px);
+    top: 30px;
+    left: 0;
+    z-index: 1;
+    right: 0;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    transform-origin: 0 0;
+    transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.3s cubic-bezier(0.4, 0.6, 0.5, 1.32);
+    transform: translate(0, 5px);
+  }
+  .f-dropdown ul li {
+    padding: 0;
+    margin: 0;
+  }
+  .f-dropdown ul li a {
+    cursor: pointer;
+    display: block;
+    padding: 8px 12px;
+    color: #000;
+    text-decoration: none;
+    outline: none;
+    position: relative;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+  }
+  .f-dropdown ul li a img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+  }
+  .f-dropdown ul li a:hover {
+    color: #5c6bc0;
+  }
+  .f-dropdown ul li.active a {
+    color: #fff;
+    background: #303f9f;
+  }
+  .f-dropdown ul li.active a:before, .f-dropdown ul li.active a:after {
+    --scale: 0.6;
+    content: "";
+    display: block;
+    width: 10px;
+    height: 2px;
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    opacity: 0;
+    background: #fff;
+    transition: all 0.2s ease;
+  }
+  .f-dropdown ul li.active a:before {
+    transform: rotate(45deg) scale(var(--scale));
+  }
+  .f-dropdown ul li.active a:after {
+    transform: rotate(-45deg) scale(var(--scale));
+  }
+  .f-dropdown ul li.active a:hover:before, .f-dropdown ul li.active a:hover:after {
+    --scale: 0.9;
+    opacity: 1;
+  }
+  .f-dropdown ul li:first-child a {
+    border-radius: 6px 6px 0 0;
+  }
+  .f-dropdown ul li:last-child a {
+    border-radius: 0 0 6px 6px;
+  }
+  .f-dropdown.filled > span {
+    color: #000;
+  }
+  .f-dropdown.open {
+    z-index: 15;
+  }
+  .f-dropdown.open > span {
+    border-color: #aaa;
+  }
+  .f-dropdown.open > span:before, .f-dropdown.open > span:after {
+    background: #000;
+  }
+  .f-dropdown.open > span:before {
+    transform: scale(0.96, 0.8) rotate(-50deg);
+  }
+  .f-dropdown.open > span:after {
+    transform: scale(0.96, 0.8) rotate(50deg);
+  }
+  .f-dropdown.open ul {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(0, 12px);
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s cubic-bezier(0.4, 0.6, 0.5, 1.32);
+  }
+  
+  /* --------------------------- */
+  .f-group select {
+    width: 100%;
+  }
+  
+  .f-control {
+    font-size: 14px;
+    line-height: normal;
+    color: #000;
+    display: inline-block;
+    background-color: #ffffff;
+    border: #ccc 1px solid;
+    border-radius: 6px;
+    padding: 8px 12px;
+    outline: none;
+    max-width: 250px;
+  }
+  .start-trading button {
+    background: #1E488A 0% 0% no-repeat padding-box;
+    border-radius: 10px;
+    font-size: 20px;
+    color: #fff;
+    padding: 10px 15px;
+    margin: 20px 4px;
+    transition: 1s;
+    border:2px solid #1E488A;
+}
+.start-trading button.trade{
+    border:2px solid #1E488A;
+    background: #fff;
+    color: #1E488A;
+}
+.start-trading button:hover{
+    background: #fff;
+    color: #1E488A;
+}
+.start-trading button.trade:hover{
+    background: #1E488A;
+    color: #fff;
+}
+.start-trading h4{
+    font-size: 36px;
+}
+.start-trading {
+    padding: 60px 15px;
+}
+@media (max-width:460px){
+    .faq input[type='checkbox']:not(:checked) + label {
+        height: 48px;
+      }
+    .faq input[type="checkbox"]:checked + label {
+        height: 200px;
+    }
+    .faq-heading {
+        width: 95%;
+        height: 42px;
+      }
+      .faq .faq-arrow{
+          top:-35px;
+      }
+}
+/* Trading Page Start */
+.binance-nft{
+    display: flex;
+    justify-content:space-between;
+}
+.binance-nft p{
+    box-sizing: border-box;
+    min-width: 0px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: left;
+    font-size: 12px;
+    font-weight: 600;
+    max-width:80%;
+}
+.binance-nft span{
+    font-size: 12px;
+    font-weight: 600;
+}
+.binance-nft:hover{
+    color: rgb(240, 185, 11);
+    cursor: pointer;
+}
