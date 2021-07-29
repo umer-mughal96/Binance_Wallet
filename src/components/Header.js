@@ -11,7 +11,7 @@ const Header = () => {
             <Link className="navbar-brand" to="/">
               <img src="./asstes/logos/company-logo.png" alt="" />
             </Link>
-            <button
+            {/* <button
               className="navbar-toggler"
               type="button"
               data-toggle="collapse"
@@ -59,16 +59,6 @@ const Header = () => {
                   </div>
                 </li>
                 <li className="nav-item dropdown single-menu">
-                  {/* <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Markets
-                            </a> */}
-                  {/* <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a className="dropdown-item" href="#">Action</a>
-                                <a className="dropdown-item" href="#">Another action</a>
-                                <div className="dropdown-divider"></div>
-                                <a className="dropdown-item" href="#">Something else here</a>
-                            </div> */}
                   <Link to="/markets">Markets</Link>
                 </li>
                 <li className="nav-item dropdown">
@@ -172,7 +162,7 @@ const Header = () => {
                   <a href="#">English</a> | <a href="#">USD</a>
                 </li>
               </ul>
-            </div>
+            </div> */}
           </div>
         </nav>
       </header>

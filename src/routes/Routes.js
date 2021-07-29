@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Header from "../components/Header";
-import Footer from "../components/Footer";
+// import Footer from "../components/Footer";
 import Landing from "../screens/Landing";
 import Markets from "../screens/Markets";
 import Payments from "../screens/Dashboard/Payments";
@@ -38,9 +38,9 @@ const Routes = withRouter(({ location }) => {
         location.pathname == "/rewardcenter" ||
         location.pathname == "/settings" ||
         location.pathname == "/taskcenter" ||
-        location.pathname == "/security" ? null : (
-      <Footer />
-      )}
+        location.pathname == "/security" ? null : ""
+     
+     }
     </Fragment>
   );
 });
