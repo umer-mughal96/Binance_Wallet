@@ -10,9 +10,12 @@ import RewardCenter from "../screens/Dashboard/RewardCenter";
 import Security from "../screens/Dashboard/Security";
 import Settings from "../screens/Dashboard/Settings";
 import TaskCenter from "../screens/Dashboard/TaskCenter";
+// import TaskCenter from "../screens/TaskCenter";
 import { withRouter } from "react-router-dom";
 import Faq from "../screens/Faq";
 import Trade from "../screens/Trade";
+import Register from "../screens/Register";
+import Login from "../screens/Login";
 
 const Routes = withRouter(({ location }) => {
   return (
@@ -26,12 +29,15 @@ const Routes = withRouter(({ location }) => {
         <Header />
       )}
       <Switch>
-        <Route exact path="/" component={Landing} />
+        <Route exact path="/" component={Register} />
         <Route path="/markets" component={Markets} />
         <Route path="/faq" component={Faq} />
         <Route path="/trade" component={Trade} />
         <Route path="/payments" component={Payments} />
         <Route path="/exchange" component={Exchange} />
+        <Route path="/signup" component={Register} />
+        <Route path="/login" component={Login} />
+
         <Route path="/rewardcenter" component={RewardCenter} />
         <Route path="/security" component={Security} />
         <Route path="/settings" component={Settings} />
