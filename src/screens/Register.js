@@ -18,6 +18,14 @@ const Register = () => {
         axios.post('http://localhost:9000/rocksolid/api/v1/auth/register', {...userSignUp})
         .then((response)=>{
             console.log(response);
+            if(response.data.success)
+            {
+                window.location.href = '/exchange';
+            }
+            else
+            {
+
+            }
         })
         .catch((error)=>{
             console.log(error);

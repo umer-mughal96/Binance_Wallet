@@ -80,7 +80,7 @@ const registerUser = async (req, res, next) => {
     bitgo.wallets().createWalletWithKeychains({"passphrase": walletPassword, "label": "Test wallet test 1"}, async function(err, result) {
     if (err) { console.dir(err); throw new Error("Error creating wallet!"); }
     console.log("Wallet Created: " + result.wallet.id());
-    console.dir(result);
+    console.log(result);
     const abc = await result.userKeychain.encryptedXprv ; 
     const def = await result.userKeychain.encryptedXprv;
     const userkey = await bcrypt.hash(abc, salt); 
