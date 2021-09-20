@@ -9,6 +9,7 @@ const cookie = require('cookie-parser')
 
 
 const authRoute = require('./routes/auth')
+const walletRoute = require('./routes/wallet')
 
 
 
@@ -36,6 +37,7 @@ connectDB();
 
 
 app.use('/rocksolid/api/v1/auth', authRoute)
+app.use('/rocksolid/api/v1/wallet', walletRoute);
 
 
 

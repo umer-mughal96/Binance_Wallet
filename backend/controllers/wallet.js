@@ -1,29 +1,24 @@
 const generateToken = require("../utils/jwt");
 const bcrypt = require("bcrypt");
-const Token = require("../models/Token");
+// const Token = require("../models/Token");
 const BitGoJS = require('bitgo');
 // Read the user authentication section to get your API access token
-
 
 
 
 // const { OAuth2Client } = require("google-auth-library");
 const User = require('../models/User')
 const Wallet = require('../models/Wallet')
-// const client = new OAuth2Client(
-//   "577210671376-f8jma6jbeh2ise31rgp23jv42hfmbpgg.apps.googleusercontent.com"
-// );
+
 const dayjs = require('dayjs');
 const sendEmailToUser = require("../utils/email");
+
 //POST        @REGISTER USER
 //API         @  '/register '
 
-const registerUser = async (req, res, next) => {
-  let abc = '';
-  let def= '';
-  let userkey= '';
-  let backupKey = '';
-  let wallet_id ;
+const getBalance = async (req, res, next) => {
+    let balance = '';
+
  
 
   console.log("Access token : "+process.env.ACCESS_TOKEN);
@@ -32,81 +27,50 @@ const registerUser = async (req, res, next) => {
 
  // Original code
   console.log("This is in");
+  const useriD = req.user.id;
+  console.log("This is UserID"+useriD);
   try {
-    const { email, password, name } = req.body;
-    let findUser = await User.findOne({ email });
-
-    if (findUser) {
-      return res
-        .status(400)
-        .json({ success: false, msg: "Email already exist"   });
-    }
-
-    const salt = await bcrypt.genSalt(10);
-    // req.body.password = await bcrypt.hash(password, salt);
-    const pass = await bcrypt.hash(password, salt)
     
+    const user = User.findById({useriD});
+    if (!user) {
+        console.log("Not found");
+        return res
+          .status(404)
+          .json({ success: false, msg: "Invalid User !" });
+      }
+      const walletData = await Wallet.findOne({userID : useriD}, {walletID:1});
+      console.log("This is wallet data : "+walletData.walletID);
+
+      if (!walletData) {
+        console.log("wallet Not found");
+        return res
+          .status(404)
+          .json({ success: false, msg: "Wallet not found !" });
+      }
+
+
     
 
     //Wallet creation Code
     const bitgo = new BitGoJS.BitGo({ env: 'test', accessToken: process.env.ACCESS_TOKEN });
 
     const walletPassword = process.env.wallet_Pass;
-
-    await bitgo.wallets().createWalletWithKeychains({"passphrase": walletPassword, "label": "Test wallet test 1"}, async function(err, result) {
-    if (err) { console.dir(err); throw new Error("Error creating wallet!"); }
-    // console.log("Wallet Created: " + result.wallet.id());
-    // console.log(result.wallet.wallet);
-    console.log("variables initialized etc")
-    wallet_id = await result.wallet.id() ;
-    abc = await result.userKeychain.encryptedXprv ; 
-    def = await result.userKeychain.encryptedXprv;
-    userkey = await bcrypt.hash(abc, salt); 
-    backupKey =  await bcrypt.hash(def, salt);
-  // console.log("BACK THIS UP: ");                                                                                                                                                  
-  // console.log("User keychain encrypted xPrv: " + result.userKeychain.encryptedXprv);                                                                                              
-  // console.log("Backup keychain encrypted xPrv: " + result.backupKeychain.encryptedXprv);                                                                                          
-  });
-//   await bitgo.coin('tbtc').wallets()
-// .generateWallet({ label: 'My Test Wallet 123', passphrase: walletPassword })
-// .then(function(wallet) {
-//   // print the new wallet
-//   console.log(wallet);
-// //   wallet.createAddress({ label: 'My address' })
-// // .then(function(address) {
-// //   // print new address
-// //   console.log("This is address : ");
-// //   console.log(address);
-// // });
-// });
-
-
- 
-
-
+    // const address =  
+   await bitgo.wallets().get({type: 'bitcoin', id: walletData.walletID},async (error, wallet)=>{
+    console.log(wallet.balance() + ' Satoshis');
+    balance = await wallet.balance();
+   });
+       
+        // console.log( balanceCall);
+        // console.log(balanceCall.balance() + ' Satoshis');
+     
    //Wallet creation code ends here
 
-  const userCreation = await User.create({
-    name : name, 
-    email : email, 
-    password : pass, 
-    verified : true
-   
-  });
-  // // console.log(userCreation.id);
-  // // console.log(wallet_id);
-
-  const walletCreation = await Wallet.create({
-    walletID : wallet_id,
-    userKeychain : userkey,
-    backupKeychain :  backupKey,
-    userID : userCreation.id
-  })
 
    
     // await sendEmailToUser({ name: req.body.name , email : req.body.email });
 
-    res.status(201).json({ success: true, msg: "Successfully registered!" });
+    res.status(200).json({ success: true, balance:balance });
   } catch (err) {
     console.log("This is error : "+err);
     res.status(500).json({ success: false, error: err.message });
@@ -120,7 +84,6 @@ const registerUser = async (req, res, next) => {
 
 const userLogin = async (req, res, next) => {
   console.log("In login");
-  console.log(req.body);
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
@@ -255,7 +218,7 @@ const logout = async (req, res, next) => {
 
 
 module.exports = {
-  registerUser,
+  getBalance,
   userLogin,
   forgotPassword,
   verifyToken,
