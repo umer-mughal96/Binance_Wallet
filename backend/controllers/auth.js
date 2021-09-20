@@ -32,6 +32,7 @@ const BitGoJS = require('bitgo');
 
 // const { OAuth2Client } = require("google-auth-library");
 const User = require('../models/User')
+const Wallet = require('../models/Wallet')
 // const client = new OAuth2Client(
 //   "577210671376-f8jma6jbeh2ise31rgp23jv42hfmbpgg.apps.googleusercontent.com"
 // );
@@ -41,20 +42,15 @@ const sendEmailToUser = require("../utils/email");
 //API         @  '/register '
 
 const registerUser = async (req, res, next) => {
+  let abc = '';
+  let def= '';
+  let userkey= '';
+  let backupKey = '';
+  let wallet_id ;
  
 
   console.log("Access token : "+process.env.ACCESS_TOKEN);
-  // const bitgo = new BitGoJS.BitGo({ env: 'test', accessToken: process.env.ACCESS_TOKEN });
-  // const coin = bitgo.coin('tbtc');
   
-  // console.log("BitGoJS library version: " + bitgo.version());
-  // bitgo.session({})
-  // .then(function(res) {
-  // console.log(res);
-  // })
-  // .catch(function(err) {
-  // console.log(err);
-  // });
   
 
  // Original code
@@ -71,37 +67,49 @@ const registerUser = async (req, res, next) => {
 
     const salt = await bcrypt.genSalt(10);
     // req.body.password = await bcrypt.hash(password, salt);
+    const pass = await bcrypt.hash(password, salt)
     
     
 
     //Wallet creation Code
     const bitgo = new BitGoJS.BitGo({ env: 'test', accessToken: process.env.ACCESS_TOKEN });
-    const walletPassword = process.env.wallet_Pass;
-    bitgo.wallets().createWalletWithKeychains({"passphrase": walletPassword, "label": "Test wallet test 1"}, async function(err, result) {
-    if (err) { console.dir(err); throw new Error("Error creating wallet!"); }
-    console.log("Wallet Created: " + result.wallet.id());
-    console.log(result);
-    const abc = await result.userKeychain.encryptedXprv ; 
-    const def = await result.userKeychain.encryptedXprv;
-    const userkey = await bcrypt.hash(abc, salt); 
-    const backupKey =  await bcrypt.hash(def, salt);
 
-    await User.create({
-      name : name, 
-      email : email, 
-      password : password, 
-      walletID : result.wallet.id(),
-      userKeychain : userkey,
-      backupKeychain :  backupKey,
-    })
-  
+    const walletPassword = process.env.wallet_Pass;
+    await bitgo.wallets().createWalletWithKeychains({"passphrase": walletPassword, "label": "Test wallet test 1"}, async function(err, result) {
+    if (err) { console.dir(err); throw new Error("Error creating wallet!"); }
+    // console.log("Wallet Created: " + result.wallet.id());
+    // console.log(result.wallet.wallet);
+    console.log("variables initialized etc")
+    wallet_id = await result.wallet.id() ;
+    abc = await result.userKeychain.encryptedXprv ; 
+    def = await result.userKeychain.encryptedXprv;
+    userkey = await bcrypt.hash(abc, salt); 
+    backupKey =  await bcrypt.hash(def, salt);
   // console.log("BACK THIS UP: ");                                                                                                                                                  
   // console.log("User keychain encrypted xPrv: " + result.userKeychain.encryptedXprv);                                                                                              
   // console.log("Backup keychain encrypted xPrv: " + result.backupKeychain.encryptedXprv);                                                                                          
   });
+   //Wallet creation code ends here
 
-    //Wallet creation code ends here
-    // await sendEmailToUser({ name: req.body.firstName , email : req.body.email });
+  const userCreation = await User.create({
+    name : name, 
+    email : email, 
+    password : pass, 
+    verified : true
+   
+  });
+  // console.log(userCreation.id);
+  // console.log(wallet_id);
+
+  const walletCreation = await Wallet.create({
+    walletID : wallet_id,
+    userKeychain : userkey,
+    backupKeychain :  backupKey,
+    userID : userCreation.id
+  })
+
+   
+    // await sendEmailToUser({ name: req.body.name , email : req.body.email });
 
     res.status(201).json({ success: true, msg: "Successfully registered!" });
   } catch (err) {
@@ -116,10 +124,12 @@ const registerUser = async (req, res, next) => {
 //API         @  '/signin'
 
 const userLogin = async (req, res, next) => {
+  console.log("In login");
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
     if (!user) {
+      console.log("Not found");
       return res
         .status(404)
         .json({ success: false, msg: "Invalid Credentials !" });
@@ -136,7 +146,7 @@ const userLogin = async (req, res, next) => {
       user: {
         id: user.id,
         email: user.email,
-        role: user.role,
+        // role: user.role,
       },
     };
 

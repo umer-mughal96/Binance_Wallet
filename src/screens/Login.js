@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
+import axios from 'axios';
 
 const Login = () => {
 
@@ -7,18 +8,42 @@ const Login = () => {
         email:'',
         password:''
     })
+    const [doRedirect, setRedirect] = useState(false);
 
     const formHandler = (ev) =>{
-        ev.preventDefault()
+        
+        ev.preventDefault();
+        console.log(process.env.REACT_APP_SERVER_URL)
+        axios.post(process.env.REACT_APP_SERVER_URL+'/rocksolid/api/v1/auth/login', {...userLogin})
+        .then((response)=>{
+            console.log(response);
+            if(response.data.success)
+            {
+
+                // window.location.href = '/exchange';
+                setRedirect(true);
+            }
+            else
+            {
+                console.log("Invalid or Etc");
+            }
+        })
+        .catch((error)=>{
+            console.log(error);
+        })
+
     }
     const changeHandler = (e) =>{
         setUserLogin({...userLogin, [e.target.name]: e.target.value})
     }
     const clickHandler = () =>{
-        setUserLogin({email:'', password:''})
+        // setUserLogin({email:'', password:''})
     }
 
     console.log(userLogin)
+    if (doRedirect) {
+        return <Redirect to='/exchange'/>;
+      }
 
     return (
         
@@ -45,7 +70,7 @@ const Login = () => {
                     onChange={changeHandler}/>
                 </div>
                 
-                <button className='login-btn' onClick={clickHandler}>Register</button>
+                <button className='login-btn' onClick={clickHandler}>Sign In</button>
             </form>
 
             <p className='login-footer-para'>Already have an account? <Link to='/register'>Sign Up</Link></p>

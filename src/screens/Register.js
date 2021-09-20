@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Redirect,Link } from 'react-router-dom'
 import axios from 'axios';
 
 
 const Register = () => {
     
+    const [doRedirect, setRedirect] = useState(false);
+
     
     const [userSignUp, setUserSignUp] = useState({
         name:'',
@@ -20,7 +22,8 @@ const Register = () => {
             console.log(response);
             if(response.data.success)
             {
-                window.location.href = '/exchange';
+                // window.location.href = '/login';
+                setRedirect(true);
             }
             else
             {
@@ -40,7 +43,12 @@ const Register = () => {
         // setUserSignUp({name:'', email:'', password:'', confirmPassword:''})
     }
     console.log(userSignUp)
-    
+
+    if (doRedirect) {
+        return <Redirect to='/login'/>;
+      }
+
+
     return (
         <div className='register-wrapper'>
             <h1 className='register-heading'>Sign Up</h1>
