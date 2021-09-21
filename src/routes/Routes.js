@@ -1,21 +1,22 @@
-import React, { Fragment } from "react";
+import React, { Fragment, lazy, Suspense } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import Header from "../components/Header";
 // import Footer from "../components/Footer";
-import Landing from "../screens/Landing";
-import Markets from "../screens/Markets";
-import Payments from "../screens/Dashboard/Payments";
-import Exchange from "../screens/Dashboard/Exchange";
-import RewardCenter from "../screens/Dashboard/RewardCenter";
-import Security from "../screens/Dashboard/Security";
-import Settings from "../screens/Dashboard/Settings";
-import TaskCenter from "../screens/Dashboard/TaskCenter";
-// import TaskCenter from "../screens/TaskCenter";
-import { withRouter } from "react-router-dom";
-import Faq from "../screens/Faq";
-import Trade from "../screens/Trade";
-import Register from "../screens/Register";
-import Login from "../screens/Login";
+// import Landing from "../screens/Landing";
+const Landing = lazy(()=> import('../screens/Landing'))
+const Markets = lazy(()=> import('../screens/Markets'));
+const Payments = lazy(()=> import('../screens/Dashboard/Payments'))
+const Exchange = lazy(()=> import('../screens/Dashboard/Exchange'))
+const RewardCenter = lazy(()=> import('../screens/Dashboard/RewardCenter'))
+const Security = lazy(()=> import('../screens/Dashboard/Security'))
+const Settings = lazy(()=> import('../screens/Dashboard/Settings'))
+const TaskCenter = lazy(()=> import('../screens/Dashboard/TaskCenter'))
+const Faq = lazy(()=> import('../screens/Faq'))
+const Trade = lazy(()=> import('../screens/Trade'))
+const Register = lazy(()=> import('../screens/Register'))
+const Login = lazy(()=> import('../screens/Login'))
+
 
 const Routes = withRouter(({ location }) => {
   return (
@@ -28,8 +29,10 @@ const Routes = withRouter(({ location }) => {
       location.pathname == "/security" ? null : (
         <Header />
       )}
+      <Suspense fallback={<div>Loading...</div>}>
       <Switch>
-        <Route exact path="/" component={Register} />
+        <Route exact path="/" component={Landing} />
+        <Route path="/register" component={Register} />
         <Route path="/markets" component={Markets} />
         <Route path="/faq" component={Faq} />
         <Route path="/trade" component={Trade} />
@@ -43,6 +46,7 @@ const Routes = withRouter(({ location }) => {
         <Route path="/settings" component={Settings} />
         <Route path="/taskcenter" component={TaskCenter} />
       </Switch>
+      </Suspense>
         {location.pathname == "/payments" ||
         location.pathname == "/exchange" ||
         location.pathname == "/rewardcenter" ||
