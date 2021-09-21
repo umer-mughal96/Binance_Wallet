@@ -2,6 +2,7 @@ const generateToken = require("../utils/jwt");
 const bcrypt = require("bcrypt");
 // const Token = require("../models/Token");
 const BitGoJS = require('bitgo');
+const {getWalletID} = require('../services/wallet')
 // Read the user authentication section to get your API access token
 
 
@@ -13,8 +14,8 @@ const Wallet = require('../models/Wallet')
 const dayjs = require('dayjs');
 const sendEmailToUser = require("../utils/email");
 
-//POST        @REGISTER USER
-//API         @  '/register '
+//POST        @Get balance
+//API         @  '/getbalance '
 
 const getBalance = async (req, res, next) => {
     let balance = '';
@@ -56,15 +57,20 @@ const getBalance = async (req, res, next) => {
 
     const walletPassword = process.env.wallet_Pass;
     // const address =  
-   await bitgo.wallets().get({type: 'bitcoin', id: walletData.walletID},async (error, wallet)=>{
-    console.log(wallet.balance() + ' Satoshis');
-    balance = await wallet.balance();
-   });
+//    await bitgo.wallets().get({type: 'bitcoin', id: walletData.walletID},async (error, wallet)=>{
+//     console.log(wallet.balance() + ' Satoshis');
+//     balance = await wallet.balance();
+//    });
        
-        // console.log( balanceCall);
-        // console.log(balanceCall.balance() + ' Satoshis');
-     
    //Wallet creation code ends here
+
+    // let walletId = '585c51a5df8380e0e3082e46';
+    await bitgo.coin('tbtc').wallets().get({ id: walletData.walletID })
+    .then(function(wallet) {
+    // print the wallet
+    console.dir(wallet._wallet.balance);
+    balance = wallet._wallet.balance;
+    });
 
 
    
@@ -79,43 +85,67 @@ const getBalance = async (req, res, next) => {
   // Original code ends here
 };
 
-//POST        @LOGIN USER
-//API         @  '/signin'
+//POST        @Send Coin
+//API         @  '/sendcoin'
 
-const userLogin = async (req, res, next) => {
-  console.log("In login");
-  try {
-    const { email, password } = req.body;
-    const user = await User.findOne({ email });
-    if (!user) {
-      console.log("Not found");
-      return res
-        .status(404)
-        .json({ success: false, msg: "Invalid Credentials !" });
-    }
+const sendCoin = async (req, res, next) => {
+  console.log("Send coin");
 
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-      return res
-        .status(404)
-        .json({ success: false, msg: "Invalid Credentials" });
-    }
+  const bitgo = new BitGoJS.BitGo({ env: 'test', accessToken: process.env.ACCESS_TOKEN });
+  const useriD = req.user.id; // User ID from Cookies
 
-    const payload = {
-      user: {
-        id: user.id,
-        email: user.email,
-        // role: user.role,
-      },
-    };
+  getWalletID(useriD);
 
-    const token = await generateToken(payload);
-    const loginUser = await User.findOne({ email }).select("-password");
+  const wallet = await bitgo.coin('tbtc').wallets().get({ id: walletData.walletID });
+    
+    // // print the wallet
+    // console.dir(wallet._wallet.balance);
+    // balance = wallet._wallet.balance;
+    // });
 
-    res.cookie('token', token, { expires: dayjs().add(1, "days").toDate(), httpOnly: true }).status(200).json({ success: true, loginUser });
-  } catch (err) {
-    res.status(500).json({ success: false, error: err.message });
-  }
+//   res.sendStatus(200);
+
+
+
+
+
+
+
+
+
+
+//   try {
+//     const { email, password } = req.body;
+//     const user = await User.findOne({ email });
+//     if (!user) {
+//       console.log("Not found");
+//       return res
+//         .status(404)
+//         .json({ success: false, msg: "Invalid Credentials !" });
+//     }
+
+//     const isMatch = await bcrypt.compare(password, user.password);
+//     if (!isMatch) {
+//       return res
+//         .status(404)
+//         .json({ success: false, msg: "Invalid Credentials" });
+//     }
+
+//     const payload = {
+//       user: {
+//         id: user.id,
+//         email: user.email,
+//         // role: user.role,
+//       },
+//     };
+
+//     const token = await generateToken(payload);
+//     const loginUser = await User.findOne({ email }).select("-password");
+
+//     res.cookie('token', token, { expires: dayjs().add(1, "days").toDate(), httpOnly: true }).status(200).json({ success: true, loginUser });
+//   } catch (err) {
+//     res.status(500).json({ success: false, error: err.message });
+//   }
 };
 
 //POST        @FORGOT PASSWORD
@@ -219,7 +249,7 @@ const logout = async (req, res, next) => {
 
 module.exports = {
   getBalance,
-  userLogin,
+  sendCoin,
   forgotPassword,
   verifyToken,
   status,

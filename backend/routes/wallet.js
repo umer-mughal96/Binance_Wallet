@@ -1,12 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const {
-    getBalance, userLogin, userGoogleLogin, status, logout,
+    getBalance, userGoogleLogin, status, logout, sendCoin,
 } = require("../controllers/wallet");
 const { authenticated } = require("../middleware/auth");
 
 router.post("/getbalance",authenticated, getBalance);
-router.post("/login", userLogin);
+router.post("/sendcoin", sendCoin);
 
 
 

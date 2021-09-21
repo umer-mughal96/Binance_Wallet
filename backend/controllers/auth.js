@@ -67,18 +67,25 @@ const registerUser = async (req, res, next) => {
   // console.log("User keychain encrypted xPrv: " + result.userKeychain.encryptedXprv);                                                                                              
   // console.log("Backup keychain encrypted xPrv: " + result.backupKeychain.encryptedXprv);                                                                                          
   });
-//   await bitgo.coin('tbtc').wallets()
-// .generateWallet({ label: 'My Test Wallet 123', passphrase: walletPassword })
-// .then(function(wallet) {
-//   // print the new wallet
-//   console.log(wallet);
-// //   wallet.createAddress({ label: 'My address' })
-// // .then(function(address) {
-// //   // print new address
-// //   console.log("This is address : ");
-// //   console.log(address);
-// // });
+
+  await bitgo.coin('tbtc').wallets()
+.generateWallet({ label: 'My Test Wallet 123', passphrase: walletPassword })
+.then(async function(result) {
+  // print the new wallet
+  // console.log(wallet.wallet);
+  wallet_id = await result.wallet.id() ;
+    abc = await result.userKeychain.prv ; 
+    def = await result.backupKeychain.prv;
+    // ghi = await result.bitgoKeychain.prv;
+    userkey = await bcrypt.hash(abc, salt); 
+    backupKey =  await bcrypt.hash(def, salt);
+//   wallet.createAddress({ label: 'My address' })
+// .then(function(address) {
+//   // print new address
+//   console.log("This is address : ");
+//   console.log(address);
 // });
+});
 
 
  
