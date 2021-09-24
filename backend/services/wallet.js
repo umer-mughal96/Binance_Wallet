@@ -1,6 +1,6 @@
 const User = require("../models/Wallet");
 
-const getWalletID = (id) => {
+const getWalletID = async (id) => {
     const walletData = await Wallet.findOne({userID : id}, {walletID:1});
     // console.log("This is wallet data : "+walletData.walletID);
     return walletData.walletID;

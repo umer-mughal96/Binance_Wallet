@@ -31,7 +31,7 @@ const Routes = withRouter(({ location }) => {
       )}
       <Suspense fallback={<div>Loading...</div>}>
       <Switch>
-        <Route exact path="/" component={Landing} />
+        <Route exact path="/" component={Register} />
         <Route path="/register" component={Register} />
         <Route path="/markets" component={Markets} />
         <Route path="/faq" component={Faq} />
