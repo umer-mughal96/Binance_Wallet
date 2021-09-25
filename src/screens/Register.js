@@ -17,7 +17,7 @@ const Register = () => {
     console.log()
     const formHandler = (ev) =>{
         ev.preventDefault()
-        axios.post('http://localhost:9000/rocksolid/api/v1/auth/register', {...userSignUp})
+        axios.post('/rocksolid/api/v1/auth/register', {...userSignUp})
         .then((response)=>{
             console.log(response);
             if(response.data.success)

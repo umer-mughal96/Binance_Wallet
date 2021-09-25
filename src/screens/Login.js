@@ -14,7 +14,7 @@ const Login = () => {
         
         ev.preventDefault();
         console.log(process.env.REACT_APP_SERVER_URL)
-        axios.post(process.env.REACT_APP_SERVER_URL+'/rocksolid/api/v1/auth/login', {...userLogin})
+        axios.post('/rocksolid/api/v1/auth/login', {...userLogin})
         .then((response)=>{
             console.log(response);
             if(response.data.success)
