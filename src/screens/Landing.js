@@ -1,6 +1,6 @@
 import React from "react";
 import { ToastContainer } from "react-toastify";
-import { successNotification } from "../components/Toastify/Toastify";
+import { errorNotification, successNotification, warningNotification } from "../components/Toastify/Toastify";
 
 const Landing = () => {
   return (
@@ -15,7 +15,15 @@ const Landing = () => {
               {/* <h2 className="mb-3">Hang on! We are under maintenance</h2> */}
               {/* <p>it will not take a long time till we get the error fixed.</p>
                   <p>we will be live again shortly.</p> */}
-                <button onClick={()=> successNotification('Hello Success')}>Success
+                <button onClick={()=> successNotification('Hello Umar')}>Success
+                <ToastContainer></ToastContainer>
+                </button>
+
+                <button onClick={()=> errorNotification('Hello Umar')}>Success
+                <ToastContainer></ToastContainer>
+                </button>
+
+                <button onClick={()=> warningNotification('Hello Umar')}>Success
                 <ToastContainer></ToastContainer>
                 </button>
             </div>

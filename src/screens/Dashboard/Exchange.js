@@ -1,8 +1,19 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import NsideBar from "../../components/NsideBar";
 import Sidebar from '../../components/SideBar';
+import { postExchange } from "../../actions/auth";
+import {useSelector} from 'react-redux'
 
 const Exchange = () => {
+
+  const state = useSelector(state => state)
+  console.log(state)
+  const [userName, setUserName] = useState('')
+  useEffect(()=>{
+    setUserName(state.Auth.user.name)
+  })
+  
   return (
     <div className="Exchange-wrapper">
       <div className="Dashboard">
@@ -15,7 +26,7 @@ const Exchange = () => {
             <div className="Dashboard-content-box-wrapper bg-white h-full">
               <div className="Dashboard-content-box w-full text-grey-darkest">
                 <h2 className="Dashboard-content-box-heading">
-                  Welcome to Rocksolid Exchnage
+                  Welcome {userName} in to Rocksolid Exchnage 
                 </h2>
                 <div className="Dashboard-Details-box">
                   <h4 className="Balance-Details-box-heading">
