@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 // const Token = require("../models/Token");
 const BitGoJS = require('bitgo');
 const {getWalletID} = require('../services/wallet')
+const axios = require('axios');
 // Read the user authentication section to get your API access token
 
 
@@ -13,6 +14,7 @@ const Wallet = require('../models/Wallet')
 
 const dayjs = require('dayjs');
 const sendEmailToUser = require("../utils/email");
+// const { default: axios } = require("stellar-sdk/node_modules/axios");
 
 //POST        @Get balance
 //API         @  '/getbalance '
@@ -88,15 +90,44 @@ const getBalance = async (req, res, next) => {
 //POST        @Send Coin
 //API         @  '/sendcoin'
 
-const sendCoin = async (req, res, next) => {
-  console.log("Send coin");
+const trade = async (req, res, next) => {
+  console.log("Trading");
 
-  const bitgo = new BitGoJS.BitGo({ env: 'test', accessToken: process.env.ACCESS_TOKEN });
-  const useriD = req.user.id; // User ID from Cookies
+//   const bitgo = new BitGoJS.BitGo({ env: 'test', accessToken: process.env.ACCESS_TOKEN });
+//   const useriD = req.user.id; // User ID from Cookies
 
-  getWalletID(useriD);
+// //   getWalletID(useriD);
 
-  const wallet = await bitgo.coin('tbtc').wallets().get({ id: walletData.walletID });
+//   const wallet = await bitgo.coin('tbtc').wallets().get({ id: getWalletID(useriD)});
+try {
+  
+  axios.post('https://app.bitgo-test.com/api/prime/trading/v1/accounts/614c76740d9dd30006294e8ccb5bd23e/orders', {
+    headers : {
+      'Authorization' : 'Bearer 3a252a17efe1159c823e6dc5bb365d7d514bad0f0cf7a7695ee306b39171a225',
+
+    }
+
+  })
+  .then((error, response) => {
+    console.log(response.response);
+
+  })
+  .catch((error) => {
+    console.log(error);
+  })
+  
+} catch (error) {
+    console.log(error); 
+}
+  
+//   const transaction = wallet.sendCoins({address : '', amount : 1.99*1e8, walletPassphrase : })
+
+//   await bitgo.coin('tbtc').wallets().get({ id: walletData.walletID })
+//   .then(function(wallet) {
+//   // print the wallet
+//   console.dir(wallet._wallet.balance);
+//   balance = wallet._wallet.balance;
+//   });
     
     // // print the wallet
     // console.dir(wallet._wallet.balance);
@@ -146,6 +177,8 @@ const sendCoin = async (req, res, next) => {
 //   } catch (err) {
 //     res.status(500).json({ success: false, error: err.message });
 //   }
+
+  res.sendStatus(200);
 };
 
 //POST        @FORGOT PASSWORD
@@ -249,7 +282,7 @@ const logout = async (req, res, next) => {
 
 module.exports = {
   getBalance,
-  sendCoin,
+  trade,
   forgotPassword,
   verifyToken,
   status,
