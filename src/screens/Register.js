@@ -37,22 +37,6 @@ const Register = ({ history }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        axios.post('/rocksolid/api/v1/register', {userSignUp})
-        .then((error, response)=>{
-            if(response.msg.success)
-            {
-                window.location.href = '/exchange';
-                
-            }
-            else
-            {
-                console.log("Unsuccessful");
-                console.log(error);
-            }
-        })
-        .catch((error)=>{
-
-        })
     };
 
     const [userSignUp, setUserSignUp] = useState({
