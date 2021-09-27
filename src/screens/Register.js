@@ -20,7 +20,7 @@ function Copyright(props) {
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
             {'Copyright © '}
             <Link to='#' className='same-links'>
-                Binance Wallet
+                RockSolid Exchange
             </Link>{' '}
             {new Date().getFullYear()}
             {'.'}
