@@ -37,8 +37,18 @@ export const loginUser = (formData, history) => async (dispatch) => {
         // res.data.loginUser.map((obj)=>{
         //     console.log(...obj)
         // })
+        function getCookie() {
+            if (document.cookie.length != 0) {
+                //Invoking key-value pair stored in a cookie
+                alert(document.cookie);
+            }
+            else {
+                alert("Cookie not available")
+            }
+        }
 
         if (res.status == 200) {
+            getCookie()
             // console.log(res.data.loginUser)
             const userData = res.data.loginUser
 
