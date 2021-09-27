@@ -135,7 +135,7 @@ const Login = ({ history }) => {
                                     </Link>
                                 </Grid>
                                 <Grid item>
-                                    <Link to='/register' variant="body2" className='same-links'>
+                                    <Link to='/' variant="body2" className='same-links'>
                                         {"Don't have an account? Sign Up"}
                                     </Link>
                                 </Grid>
