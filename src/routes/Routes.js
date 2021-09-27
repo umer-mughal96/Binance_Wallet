@@ -2,9 +2,7 @@ import React, { Fragment, lazy, Suspense } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 import Header from "../components/Header";
-// import Footer from "../components/Footer";
-// import Landing from "../screens/Landing";
-const Landing = lazy(()=> import('../screens/Landing'))
+// const Landing = lazy(()=> import('../screens/Landing'))
 const Markets = lazy(()=> import('../screens/Markets'));
 const Payments = lazy(()=> import('../screens/Dashboard/Payments'))
 const Exchange = lazy(()=> import('../screens/Dashboard/Exchange'))
@@ -31,13 +29,12 @@ const Routes = withRouter(({ location }) => {
       )}
       <Suspense fallback={<div>Loading...</div>}>
       <Switch>
-        <Route exact path="/" component={Landing} />
+        <Route exact path="/" component={Register} />
         <Route path="/markets" component={Markets} />
         <Route path="/faq" component={Faq} />
         <Route path="/trade" component={Trade} />
         <Route path="/payments" component={Payments} />
         <Route path="/exchange" component={Exchange} />
-        <Route path="/signup" component={Register} />
         <Route path="/login" component={Login} />
 
         <Route path="/rewardcenter" component={RewardCenter} />

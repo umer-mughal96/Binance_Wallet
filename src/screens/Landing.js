@@ -1,8 +1,11 @@
 import React from "react";
-import { ToastContainer } from "react-toastify";
-import { errorNotification, successNotification, warningNotification } from "../components/Toastify/Toastify";
+import { postExchange } from "../actions/auth";
 
 const Landing = () => {
+  
+  const clickHandler = () =>{
+    postExchange()
+  }
   return (
     <div className="Comming-soon-wrapper">
         <div className="maintenance-wrapper">
@@ -15,17 +18,7 @@ const Landing = () => {
               {/* <h2 className="mb-3">Hang on! We are under maintenance</h2> */}
               {/* <p>it will not take a long time till we get the error fixed.</p>
                   <p>we will be live again shortly.</p> */}
-                <button onClick={()=> successNotification('Hello Umar')}>Success
-                <ToastContainer></ToastContainer>
-                </button>
-
-                <button onClick={()=> errorNotification('Hello Umar')}>Success
-                <ToastContainer></ToastContainer>
-                </button>
-
-                <button onClick={()=> warningNotification('Hello Umar')}>Success
-                <ToastContainer></ToastContainer>
-                </button>
+                  <button onClick={clickHandler}>check</button>
             </div>
           </div>
         </div>

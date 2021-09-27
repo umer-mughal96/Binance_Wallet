@@ -4,15 +4,20 @@ import NsideBar from "../../components/NsideBar";
 import Sidebar from '../../components/SideBar';
 import { postExchange } from "../../actions/auth";
 import {useSelector} from 'react-redux'
+import { useDispatch } from "react-redux";
 
 const Exchange = () => {
 
+  const dispatch = useDispatch()
   const state = useSelector(state => state)
   console.log(state)
   const [userName, setUserName] = useState('')
   useEffect(()=>{
     setUserName(state.Auth.user.name)
   })
+  const clickHandler = () =>{
+    dispatch(postExchange()) 
+  }
   
   return (
     <div className="Exchange-wrapper">
@@ -26,7 +31,7 @@ const Exchange = () => {
             <div className="Dashboard-content-box-wrapper bg-white h-full">
               <div className="Dashboard-content-box w-full text-grey-darkest">
                 <h2 className="Dashboard-content-box-heading">
-                  Welcome {userName} in to Rocksolid Exchnage 
+                  Welcome {userName} in to Rocksolid Exchnage
                 </h2>
                 <div className="Dashboard-Details-box">
                   <h4 className="Balance-Details-box-heading">
@@ -121,7 +126,7 @@ const Exchange = () => {
                           $0.000000
                         </h6>
                         <div className="tab-inner-content-buttons">
-                          <button className="tab-dark-btn">Deposit</button>
+                          <button className="tab-dark-btn" onClick={clickHandler}>Deposit</button>
                           <button className="tab-light-btn">Withdraw</button>
                         </div>
                       </div>

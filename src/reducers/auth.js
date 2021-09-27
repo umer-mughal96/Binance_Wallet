@@ -46,6 +46,13 @@ export const Auth = ((state = initialState, action)=>{
                 auLoading: false,
                 error: payload
             }
+        
+        case authConstants.POST_EXCHANGE:
+            console.log(payload)
+            return{
+                ...state,
+                user: payload
+            }
         default:
             return state
         }

@@ -1,41 +1,34 @@
-import axios from "axios";
-import { useState } from "react";
-import { Redirect } from "react-router";
-import { Link } from "react-router-dom";
+
 import { errorNotification, successNotification } from "../components/Toastify/Toastify";
-import {login, register} from '../services/auth'
+import { login, register, wallet } from '../services/auth'
 import * as authConstants from "./constants";
 
 
-const SERVER_URL = 'http://localhost:3000'
-
-// export const [doRedirect, setDoRedirect] = useState(false)
 export const registerUser = (formData, history) => async dispatch => {
 
-    
     try {
-        dispatch({type : authConstants.REGISTER_USER})
+        dispatch({ type: authConstants.REGISTER_USER })
 
         const res = await register(formData)
         console.log(res.data.msg)
-        if(res.status == 201){
-            dispatch({type : authConstants.REGISTER_USER_SUCCESS})
+        if (res.status == 201) {
+            dispatch({ type: authConstants.REGISTER_USER_SUCCESS })
             successNotification("Register Success")
-            setTimeout(()=>{
+            setTimeout(() => {
                 history.push('/login')
             }, 2800)
-                 
+
         }
         console.log(history)
     } catch (error) {
         console.log("🚀 ~ file: auth.js ~ line 40 ~ error", error)
-        dispatch({type : authConstants.REGISTER_USER_FAIL , payload : error})
+        dispatch({ type: authConstants.REGISTER_USER_FAIL, payload: error })
         errorNotification("Register Failed")
     }
 }
 
-export const loginUser = (formData, history) => async(dispatch) => {
-    
+export const loginUser = (formData, history) => async (dispatch) => {
+
     console.log(history)
     try {
         dispatch({ type: authConstants.LOGIN_USER })
@@ -44,34 +37,39 @@ export const loginUser = (formData, history) => async(dispatch) => {
         // res.data.loginUser.map((obj)=>{
         //     console.log(...obj)
         // })
-        
-        if(res.status == 200){
-            console.log(res.data.loginUser)
-            // const userName = res.data.loginUser.name
+
+        if (res.status == 200) {
+            // console.log(res.data.loginUser)
             const userData = res.data.loginUser
-            console.log(userData)
-            dispatch({type: authConstants.LOGIN_USER_SUCCESS, payload: userData})
+
+            dispatch({ type: authConstants.LOGIN_USER_SUCCESS, payload: userData })
             successNotification("Login Successfully")
             // history.push('/exchange')
-            setTimeout(()=>{
+            setTimeout(() => {
                 history.push('/exchange')
+                postExchange(res.data.loginUser._id)
             }, 2800)
-        }    
-        
+        }
+
     } catch (error) {
         console.log("🚀 ~ file: auth.js ~ line 40 ~ error", error)
-        dispatch({type: authConstants.LOGIN_USER_FAIL, payload: formData})
+        dispatch({ type: authConstants.LOGIN_USER_FAIL, payload: formData })
         errorNotification("Login Failed")
     }
 }
 
-export const postExchange = () => {
+export const postExchange = (userID) => async (dispatch) => {
     console.log("function")
-    const data = {
-        success: true,
-        msg: 'authorized'
-    }
+    // const data = {
+    //     success: true,
+    //     msg: 'authorized'
+    // }
 
-    axios.post('http://localhost:9000/rocksolid/api/v1/wallet/getbalance', { ...data })
-        .then(res => console.log(res))
+    try {
+        const res = await wallet(userID)
+        console.log(res)
+        dispatch({ type: authConstants.POST_EXCHANGE, payload: res })
+    } catch (error) {
+
+    }
 }
