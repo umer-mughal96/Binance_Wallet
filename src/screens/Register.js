@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux';
 import { registerUser } from '../actions/auth';
 import { Avatar } from '@mui/material';
@@ -12,6 +13,11 @@ import { LockOutlined } from '@mui/icons-material';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
+import Spinner from '../components/loader/Spinner';
+import { errorNotification, warningNotification } from '../components/Toastify/Toastify';
+import validate from '../components/formValidation/FormValidation';
+import useForm from '../components/formValidation/useForm';
+
 
 function Copyright(props) {
     console.log(props)
@@ -31,32 +37,45 @@ function Copyright(props) {
 const theme = createTheme();
 
 const Register = ({ history }) => {
-    
+
+    const {
+        userSignUp,
+        setUserSignUp,
+        errors,
+        handleChange,
+        handleClick,
+    } = useForm(login, validate)
+
+    function login() {
+        console.log('No errors, submit callback called!')
+    }
+
+    const [disable, setDisable] = useState(false)
+    const selector = useSelector(state => state.Auth)
     const dispatch = useDispatch()
-    console.log(history)
+    console.log(selector)
 
     const handleSubmit = (event) => {
-        event.preventDefault();
-    };
-
-    const [userSignUp, setUserSignUp] = useState({
-        name: '',
-        email: '',
-        password: '',
-        confirmPassword: ''
-    })
-
-    const changeHandler = (e) => {
-        setUserSignUp({ ...userSignUp, [e.target.name]: e.target.value })
-    }
-    const clickHandler = () => {
-        console.log(userSignUp)
+        event.preventDefault()
+        console.log('submit')
+        setDisable(selector.auLoading)
         dispatch(registerUser(userSignUp, history))
-    }
+
+        setUserSignUp({
+            name: '',
+            email: '',
+            password: '',
+            confirmPassword: ''
+          })
+    };
 
 
     return (
         <ThemeProvider theme={theme}>
+            {/* {selector.auLoading ?
+                <Spinner /> : */}
+
+
             <Grid container component="main" sx={{ height: '100vh' }}>
                 <CssBaseline />
                 <Grid
@@ -92,6 +111,7 @@ const Register = ({ history }) => {
                         </Typography>
                         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
                             <TextField
+                                className='set-width'
                                 margin="normal"
                                 required
                                 fullWidth
@@ -100,9 +120,16 @@ const Register = ({ history }) => {
                                 name="name"
                                 autoComplete="name"
                                 autoFocus
-                                onChange={changeHandler}
+                                onChange={handleChange}
+                                value={userSignUp.name || ''}
                             />
+                            <Typography variant="body2" align='left' color='red'>
+                                {errors.name && (
+                                    <p className="help is-danger">{errors.name}</p>
+                                )}
+                            </Typography>
                             <TextField
+                                className='set-width'
                                 margin="normal"
                                 required
                                 fullWidth
@@ -110,9 +137,16 @@ const Register = ({ history }) => {
                                 label="Email Address"
                                 name="email"
                                 autoComplete="email"
-                                onChange={changeHandler}
+                                onChange={handleChange}
+                                value={userSignUp.email || ''}
                             />
+                            <Typography variant="body2" align='left' color='red'>
+                                {errors.email && (
+                                    <p className="help is-danger">{errors.email}</p>
+                                )}
+                            </Typography>
                             <TextField
+                                className='set-width'
                                 margin="normal"
                                 required
                                 fullWidth
@@ -121,9 +155,16 @@ const Register = ({ history }) => {
                                 type="password"
                                 id="password"
                                 autoComplete="current-password"
-                                onChange={changeHandler}
+                                onChange={handleChange}
+                                value={userSignUp.password || ''}
                             />
+                            <Typography variant="body2" align='left' color='red'>
+                                {errors.password && (
+                                    <p className="help is-danger">{errors.password}</p>
+                                )}
+                            </Typography>
                             <TextField
+                                className='set-width'
                                 margin="normal"
                                 required
                                 fullWidth
@@ -132,14 +173,21 @@ const Register = ({ history }) => {
                                 type="password"
                                 id="confirmPassword"
                                 autoComplete="current-confirmPassword"
-                                onChange={changeHandler}
+                                value={userSignUp.confirmPassword || ''}
+                                onChange={handleChange}
                             />
+                            <Typography variant="body2" align='left' color='red'>
+                                {errors.confirmPassword && (
+                                    <p className="help is-danger">{errors.confirmPassword}</p>
+                                )}
+                            </Typography>
                             <Button
                                 type="submit"
                                 fullWidth
                                 variant="contained"
                                 sx={{ mt: 3, mb: 2 }}
-                                onClick={clickHandler}
+                                onClick={handleClick}
+                                disabled={!userSignUp.email || !userSignUp.password || !userSignUp.name || !userSignUp.confirmPassword || userSignUp.password !== userSignUp.confirmPassword || disable}
                             >
                                 Sign Up
                             </Button>
@@ -155,6 +203,9 @@ const Register = ({ history }) => {
                     </Box>
                 </Grid>
             </Grid>
+            {/* } */}
+
+
         </ThemeProvider>
     );
 }

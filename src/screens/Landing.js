@@ -4,7 +4,7 @@ import { postExchange } from "../actions/auth";
 const Landing = () => {
   
   const clickHandler = () =>{
-    postExchange()
+
   }
   return (
     <div className="Comming-soon-wrapper">

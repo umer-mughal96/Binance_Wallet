@@ -34,27 +34,13 @@ export const loginUser = (formData, history) => async (dispatch) => {
         dispatch({ type: authConstants.LOGIN_USER })
 
         const res = await login(formData)
-        // res.data.loginUser.map((obj)=>{
-        //     console.log(...obj)
-        // })
-        // function getCookie() {
-        //     if (document.cookie.length != 0) {
-        //         //Invoking key-value pair stored in a cookie
-        //         alert(document.cookie);
-        //     }
-        //     else {
-        //         alert("Cookie not available")
-        //     }
-        // }
-
+        
         if (res.status == 200) {
-            // getCookie()
-            // console.log(res.data.loginUser)
+            
             const userData = res.data.loginUser
 
             dispatch({ type: authConstants.LOGIN_USER_SUCCESS, payload: userData })
             successNotification("Login Successfully")
-            // history.push('/exchange')
             setTimeout(() => {
                 history.push('/exchange')
                 postExchange(res.data.loginUser._id)

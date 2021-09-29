@@ -4426,5 +4426,13 @@ div.floating-action-menu.active>.action-button>.btn-floating>i {
     color: cornflowerblue;
 }
 
+.set-width .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+    min-width: 30rem;
+}
+
+.set-color .css-79pwoh-MuiTypography-root {
+    color: red;
+}
+
 
 /* --------- end of Links Styling ---------- */

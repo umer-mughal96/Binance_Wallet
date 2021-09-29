@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
-import { loginUser } from '../actions/auth'
 import { Avatar } from '@mui/material';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -14,13 +14,16 @@ import { LockOutlined } from '@mui/icons-material';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
-
+import Spinner from '../components/loader/Spinner';
+import { loginUser } from '../actions/auth'
+import validate from '../components/formValidation/FormValidation';
+import useForm from '../components/formValidation/useForm';
 
 function Copyright(props) {
     console.log(props)
     return (
 
-        <Typography variant="body2" color="text.secondary" align="center" {...props}>
+        <Typography variant="body2" color="text.secondary" align='center' {...props}>
             {'Copyright © '}
             <Link to='#' className='same-links'>
                 RockSolid Exchange
@@ -35,118 +38,149 @@ const theme = createTheme();
 
 const Login = ({ history }) => {
 
-    const dispatch = useDispatch()
+        const {
+            userLogin,
+            setUserLogin,
+            errors,
+            handleChange,
+            handleClick,
+        } = useForm(login, validate);
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-    };
+        function login() {
+            console.log('No errors, submit callback called!');
+        }
 
-    const [userLogin, setUserLogin] = useState({
-        email: '',
-        password: ''
-    })
 
-    const changeHandler = (e) => {
-        setUserLogin({ ...userLogin, [e.target.name]: e.target.value })
-    }
-    const clickHandler = () => {
         console.log(userLogin)
-        dispatch(loginUser(userLogin, history))
+        const [disable, setDisable] = useState(false)
+        const [loader, setLoader] = useState()
+        const dispatch = useDispatch()
+        const selector = useSelector(state => state.Auth)
+        const { auLoading } = selector
+        console.log(auLoading)
 
-        // setUserLogin({email:'', password:''})
+        const handleSubmit = (event) => {
+            event.preventDefault();
+            setDisable(selector.auLoading)
+            dispatch(loginUser(userLogin, history))
+            
+              setUserLogin({
+                email: '',
+                password: ''
+              })
+
+        };
+
+        return (
+            <ThemeProvider theme={theme}>
+                {/* {loader ?
+                    <Spinner />: */}
+                    <Grid container component="main" sx={{ height: '100vh' }}>
+                        <CssBaseline />
+                        <Grid
+                            item
+                            xs={false}
+                            sm={4}
+                            md={7}
+                            sx={{
+                                backgroundImage: 'url(https://source.unsplash.com/random)',
+                                backgroundRepeat: 'no-repeat',
+                                backgroundColor: (t) =>
+                                    t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
+                                backgroundSize: 'cover',
+                                backgroundPosition: 'center',
+                            }}
+                        />
+                        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+                            <Box
+                                sx={{
+                                    my: 8,
+                                    mx: 4,
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    alignItems: 'center',
+                                }}
+                            >
+                                <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                                    <LockOutlined />
+                                </Avatar>
+                                <Typography component="h1" variant="h5">
+                                    Sign In
+                                </Typography>
+                                <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+                                    <TextField
+                                        className='set-width'
+                                        margin="normal"
+                                        required
+                                        fullWidth
+                                        id="email"
+                                        label="Email Address"
+                                        name="email"
+                                        autoComplete="email"
+                                        autoFocus
+                                        onChange={handleChange}
+                                        value={userLogin.email || ''}
+                                    />
+                                    <Typography variant="body2" align='left' color='red'>
+                                    {errors.email && (
+                                        <p className="help is-danger">{errors.email}</p>
+                                    )}
+                                    </Typography>
+                                    
+                                    <TextField
+                                        className='set-width'
+                                        margin="normal"
+                                        required
+                                        fullWidth
+                                        name="password"
+                                        label="Password"
+                                        type="password"
+                                        id="password"
+                                        autoComplete="current-password"
+                                        onChange={handleChange}
+                                        value={userLogin.password || ''}
+                                    />
+                                    <Typography variant="body2" align='left' color='red'>
+                                    {errors.password && (
+                                        <p className="help is-danger">{errors.password}</p>
+                                    )}
+                                    </Typography>
+                                    <FormControlLabel
+                                        control={<Checkbox value="remember" color="primary" />}
+                                        label="Remember me"
+                                    />
+                                    <Button
+                                        type="submit"
+                                        fullWidth
+                                        variant="contained"
+                                        sx={{ mt: 3, mb: 2 }}
+                                        onClick={handleClick}
+                                        disabled={!userLogin.email || !userLogin.password || disable}
+                                    >
+                                        Sign In
+                                    </Button>
+                                    <Grid container>
+                                        <Grid item xs>
+                                            <Link to="#" variant="body2" className='same-links'>
+                                                Forgot password?
+                                            </Link>
+                                        </Grid>
+                                        <Grid item>
+                                            <Link to='/' variant="body2" className='same-links'>
+                                                {"Don't have an account? Sign Up"}
+                                            </Link>
+                                        </Grid>
+                                    </Grid>
+                                    <Copyright sx={{ mt: 5 }} />
+                                </Box>
+                            </Box>
+                        </Grid>
+                    </Grid >
+                    {/* } */}
+
+
+            </ThemeProvider >
+        );
     }
 
-
-
-    return (
-        <ThemeProvider theme={theme}>
-            <Grid container component="main" sx={{ height: '100vh' }}>
-                <CssBaseline />
-                <Grid
-                    item
-                    xs={false}
-                    sm={4}
-                    md={7}
-                    sx={{
-                        backgroundImage: 'url(https://source.unsplash.com/random)',
-                        backgroundRepeat: 'no-repeat',
-                        backgroundColor: (t) =>
-                            t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                    }}
-                />
-                <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-                    <Box
-                        sx={{
-                            my: 8,
-                            mx: 4,
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'center',
-                        }}
-                    >
-                        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                            <LockOutlined />
-                        </Avatar>
-                        <Typography component="h1" variant="h5">
-                            Sign In
-                        </Typography>
-                        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
-                            <TextField
-                                margin="normal"
-                                required
-                                fullWidth
-                                id="email"
-                                label="Email Address"
-                                name="email"
-                                autoComplete="email"
-                                autoFocus
-                                onChange={changeHandler}
-                            />
-                            <TextField
-                                margin="normal"
-                                required
-                                fullWidth
-                                name="password"
-                                label="Password"
-                                type="password"
-                                id="password"
-                                autoComplete="current-password"
-                                onChange={changeHandler}
-                            />
-                            <FormControlLabel
-                                control={<Checkbox value="remember" color="primary" />}
-                                label="Remember me"
-                            />
-                            <Button
-                                type="submit"
-                                fullWidth
-                                variant="contained"
-                                sx={{ mt: 3, mb: 2 }}
-                                onClick={clickHandler}
-                            >
-                                Sign In
-                            </Button>
-                            <Grid container>
-                                <Grid item xs>
-                                    <Link to="#" variant="body2" className='same-links'>
-                                        Forgot password?
-                                    </Link>
-                                </Grid>
-                                <Grid item>
-                                    <Link to='/' variant="body2" className='same-links'>
-                                        {"Don't have an account? Sign Up"}
-                                    </Link>
-                                </Grid>
-                            </Grid>
-                            <Copyright sx={{ mt: 5 }} />
-                        </Box>
-                    </Box>
-                </Grid>
-            </Grid>
-        </ThemeProvider>
-    );
-}
-
-export default Login
+    export default Login

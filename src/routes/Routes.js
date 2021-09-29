@@ -2,6 +2,7 @@ import React, { Fragment, lazy, Suspense } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 import Header from "../components/Header";
+import Spinner from '../components/loader/Spinner'
 // const Landing = lazy(()=> import('../screens/Landing'))
 const Markets = lazy(()=> import('../screens/Markets'));
 const Payments = lazy(()=> import('../screens/Dashboard/Payments'))
@@ -27,7 +28,7 @@ const Routes = withRouter(({ location }) => {
       location.pathname == "/security" ? null : (
         <Header />
       )}
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Spinner/>}>
       <Switch>
         <Route exact path="/" component={Register} />
         <Route path="/markets" component={Markets} />
