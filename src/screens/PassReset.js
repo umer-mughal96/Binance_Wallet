@@ -15,45 +15,43 @@ import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
 import Spinner from '../components/loader/Spinner';
-import { forgetPassAction, loginUser } from '../actions/auth'
+import { loginUser, passResetAction } from '../actions/auth'
 import validate from '../components/formValidation/FormValidation';
 import useForm from '../components/formValidation/useForm';
 import Copyright from '../components/Copyright';
 
-const ForgetPass = () => {
+const PassReset = () => {
     const theme = createTheme();
 
     const {
-        forgetPass,
-        setforgetPass,
+        passwordReset,
+        setpasswordReset,
         errors,
         handleChange,
         handleClick,
-    } = useForm(login, validate);
+    } = useForm(login, validate)
 
     function login() {
-        console.log('No errors, submit callback called!');
+        console.log('No errors, submit callback called!')
     }
 
-
-    console.log(forgetPass)
     const [disable, setDisable] = useState(false)
-    const [loader, setLoader] = useState()
-    const dispatch = useDispatch()
     const selector = useSelector(state => state.Auth)
-    const { auLoading } = selector
-    console.log(auLoading)
+    const dispatch = useDispatch(passResetAction(passwordReset))
+    console.log(selector)
 
     const handleSubmit = (event) => {
-        event.preventDefault();
+        event.preventDefault()
+        console.log('submit')
         setDisable(selector.auLoading)
-        dispatch(forgetPassAction(forgetPass))
+        dispatch(passResetAction(passwordReset))
 
-        setforgetPass({
-            email: '',
+        setpasswordReset({
+            password: '',
+            confirmPassword: ''
         })
-
     };
+
     return (
         <ThemeProvider theme={theme}>
             {/* {loader ?
@@ -88,7 +86,7 @@ const ForgetPass = () => {
                             <LockOutlined />
                         </Avatar>
                         <Typography component="h1" variant="h5">
-                            Forget Password?
+                            Reset Password
                         </Typography>
                         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 2, width: '100%' }}>
                             <TextField
@@ -96,17 +94,35 @@ const ForgetPass = () => {
                                 margin="normal"
                                 required
                                 fullWidth
-                                id="email"
-                                label="Email Address"
-                                name="email"
-                                autoComplete="email"
-                                autoFocus
+                                name="password"
+                                label="Password"
+                                type="password"
+                                id="password"
+                                autoComplete="current-password"
                                 onChange={handleChange}
-                                value={forgetPass.email || ''}
+                                value={passwordReset.password || ''}
                             />
                             <Typography variant="body2" align='left' color='red'>
-                                {errors.email && (
-                                    <p className="help is-danger">{errors.email}</p>
+                                {errors.password && (
+                                    <p className="help is-danger">{errors.password}</p>
+                                )}
+                            </Typography>
+                            <TextField
+                                className='set-width'
+                                margin="normal"
+                                required
+                                fullWidth
+                                name="confirmPassword"
+                                label="Confirm Password"
+                                type="password"
+                                id="confirmPassword"
+                                autoComplete="current-confirmPassword"
+                                value={passwordReset.confirmPassword || ''}
+                                onChange={handleChange}
+                            />
+                            <Typography variant="body2" align='left' color='red'>
+                                {errors.confirmPassword && (
+                                    <p className="help is-danger">{errors.confirmPassword}</p>
                                 )}
                             </Typography>
                             <Button
@@ -115,9 +131,9 @@ const ForgetPass = () => {
                                 variant="contained"
                                 sx={{ mt: 3, mb: 2 }}
                                 onClick={handleClick}
-                                disabled={!forgetPass.email || disable}
+                                disabled={(!passwordReset.password && !passwordReset.confirmPassword) || disable}
                             >
-                                Send Password Reset Link
+                                Reset Password
                             </Button>
                             <Grid container>
                                 <Grid item xs>
@@ -143,4 +159,4 @@ const ForgetPass = () => {
     )
 }
 
-export default ForgetPass
+export default PassReset

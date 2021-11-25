@@ -13,6 +13,16 @@ const useForm = (callback, validate) => {
     password: '',
     confirmPassword: ''
   });
+
+  const [forgetPass, setforgetPass] = useState({
+    password: '',
+  });
+
+  const [passwordReset, setpasswordReset] = useState({
+    password: '',
+    confirmPassword: ''
+  });
+
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -31,12 +41,17 @@ const useForm = (callback, validate) => {
   const handleChange = (event) => {
     event.persist();
     setUserLogin({ ...userLogin, [event.target.name]: event.target.value });
-    setUserSignUp({ ...userSignUp, [event.target.name]: event.target.value })
+    setUserSignUp({ ...userSignUp, [event.target.name]: event.target.value });
+    setforgetPass({ ...forgetPass, [event.target.name]: event.target.value })
   };
 
   return {
     handleChange,
     handleClick,
+    passwordReset,
+    setpasswordReset,
+    forgetPass,
+    setforgetPass,
     userLogin,
     setUserLogin,
     userSignUp,
