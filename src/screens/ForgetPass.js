@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
-import { useDispatch } from 'react-redux';
-import { registerUser } from '../actions/auth';
+import { useDispatch } from 'react-redux'
 import { Avatar } from '@mui/material';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -14,55 +15,49 @@ import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
 import Spinner from '../components/loader/Spinner';
-import { errorNotification, warningNotification } from '../components/Toastify/Toastify';
+import { loginUser } from '../actions/auth'
 import validate from '../components/formValidation/FormValidation';
 import useForm from '../components/formValidation/useForm';
 import Copyright from '../components/Copyright';
 
-
-
-const Register = ({ history }) => {
-
+const ForgetPass = () => {
     const theme = createTheme();
 
     const {
-        userSignUp,
-        setUserSignUp,
+        userLogin,
+        setUserLogin,
         errors,
         handleChange,
         handleClick,
-    } = useForm(login, validate)
+    } = useForm(login, validate);
 
     function login() {
-        console.log('No errors, submit callback called!')
+        console.log('No errors, submit callback called!');
     }
 
+
+    console.log(userLogin)
     const [disable, setDisable] = useState(false)
-    const selector = useSelector(state => state.Auth)
+    const [loader, setLoader] = useState()
     const dispatch = useDispatch()
-    console.log(selector)
+    const selector = useSelector(state => state.Auth)
+    const { auLoading } = selector
+    console.log(auLoading)
 
     const handleSubmit = (event) => {
-        event.preventDefault()
-        console.log('submit')
+        event.preventDefault();
         setDisable(selector.auLoading)
-        dispatch(registerUser(userSignUp, history))
+        dispatch(loginUser(userLogin))
 
-        setUserSignUp({
-            name: '',
+        setUserLogin({
             email: '',
-            password: '',
-            confirmPassword: ''
-          })
+        })
+
     };
-
-
     return (
         <ThemeProvider theme={theme}>
-            {/* {selector.auLoading ?
-                <Spinner /> : */}
-
-
+            {/* {loader ?
+            <Spinner />: */}
             <Grid container component="main" sx={{ height: '100vh' }}>
                 <CssBaseline />
                 <Grid
@@ -89,32 +84,13 @@ const Register = ({ history }) => {
                             alignItems: 'center',
                         }}
                     >
-
                         <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
                             <LockOutlined />
                         </Avatar>
                         <Typography component="h1" variant="h5">
-                            Sign Up
+                            Sign In
                         </Typography>
                         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 2, width: '100%' }}>
-                            <TextField
-                                className='set-width'
-                                margin="normal"
-                                required
-                                fullWidth
-                                id="name"
-                                label="User Name"
-                                name="name"
-                                autoComplete="name"
-                                autoFocus
-                                onChange={handleChange}
-                                value={userSignUp.name || ''}
-                            />
-                            <Typography variant="body2" align='left' color='red'>
-                                {errors.name && (
-                                    <p className="help is-danger">{errors.name}</p>
-                                )}
-                            </Typography>
                             <TextField
                                 className='set-width'
                                 margin="normal"
@@ -124,48 +100,13 @@ const Register = ({ history }) => {
                                 label="Email Address"
                                 name="email"
                                 autoComplete="email"
+                                autoFocus
                                 onChange={handleChange}
-                                value={userSignUp.email || ''}
+                                value={userLogin.email || ''}
                             />
                             <Typography variant="body2" align='left' color='red'>
                                 {errors.email && (
                                     <p className="help is-danger">{errors.email}</p>
-                                )}
-                            </Typography>
-                            <TextField
-                                className='set-width'
-                                margin="normal"
-                                required
-                                fullWidth
-                                name="password"
-                                label="Password"
-                                type="password"
-                                id="password"
-                                autoComplete="current-password"
-                                onChange={handleChange}
-                                value={userSignUp.password || ''}
-                            />
-                            <Typography variant="body2" align='left' color='red'>
-                                {errors.password && (
-                                    <p className="help is-danger">{errors.password}</p>
-                                )}
-                            </Typography>
-                            <TextField
-                                className='set-width'
-                                margin="normal"
-                                required
-                                fullWidth
-                                name="confirmPassword"
-                                label="Confirm Password"
-                                type="password"
-                                id="confirmPassword"
-                                autoComplete="current-confirmPassword"
-                                value={userSignUp.confirmPassword || ''}
-                                onChange={handleChange}
-                            />
-                            <Typography variant="body2" align='left' color='red'>
-                                {errors.confirmPassword && (
-                                    <p className="help is-danger">{errors.confirmPassword}</p>
                                 )}
                             </Typography>
                             <Button
@@ -174,14 +115,19 @@ const Register = ({ history }) => {
                                 variant="contained"
                                 sx={{ mt: 3, mb: 2 }}
                                 onClick={handleClick}
-                                disabled={!userSignUp.email || !userSignUp.password || !userSignUp.name || !userSignUp.confirmPassword || userSignUp.password !== userSignUp.confirmPassword || disable}
+                                disabled={!userLogin.email || !userLogin.password || disable}
                             >
-                                Sign Up
+                                Sign In
                             </Button>
                             <Grid container>
+                                <Grid item xs>
+                                    <Link to="#" variant="body2" className='same-links'>
+                                        Forgot password?
+                                    </Link>
+                                </Grid>
                                 <Grid item>
-                                    <Link to="/login" className='same-links'>
-                                        {"Already have an account? Sign In"}
+                                    <Link to='/' variant="body2" className='same-links'>
+                                        {"Don't have an account? Sign Up"}
                                     </Link>
                                 </Grid>
                             </Grid>
@@ -189,12 +135,12 @@ const Register = ({ history }) => {
                         </Box>
                     </Box>
                 </Grid>
-            </Grid>
+            </Grid >
             {/* } */}
 
 
-        </ThemeProvider>
-    );
+        </ThemeProvider >
+    )
 }
 
-export default Register
+export default ForgetPass
