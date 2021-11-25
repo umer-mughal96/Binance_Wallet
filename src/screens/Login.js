@@ -18,6 +18,7 @@ import Spinner from '../components/loader/Spinner';
 import { loginUser } from '../actions/auth'
 import validate from '../components/formValidation/FormValidation';
 import useForm from '../components/formValidation/useForm';
+import LoadingButton from '@mui/lab/LoadingButton';
 
 function Copyright(props) {
     console.log(props)
@@ -147,16 +148,24 @@ const Login = ({ history }) => {
                                         control={<Checkbox value="remember" color="primary" />}
                                         label="Remember me"
                                     />
-                                    <Button
+                                <LoadingButton type="submit"
+                                    fullWidth
+                                    variant="contained"
+                                    sx={{ mt: 3, mb: 2 }} onClick={handleClick} loading={auLoading}
+
+                                >
+                                    Sign In
+                                </LoadingButton>
+                                {/* <Button
                                         type="submit"
                                         fullWidth
                                         variant="contained"
                                         sx={{ mt: 3, mb: 2 }}
                                         onClick={handleClick}
-                                        // disabled={!userLogin.email || !userLogin.password || disable}
+
                                     >
                                         Sign In
-                                    </Button>
+                                    </Button> */}
                                     <Grid container>
                                         <Grid item xs>
                                         <Link to="/forget" variant="body2" className='same-links'>

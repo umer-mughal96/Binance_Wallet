@@ -11,19 +11,19 @@ export const registerUser = (formData, history) => async dispatch => {
 
         const res = await register(formData)
         console.log(res.data.msg)
-        if (res.status == 201) {
-            dispatch({ type: authConstants.REGISTER_USER_SUCCESS })
-            successNotification("Register Success")
-            setTimeout(() => {
-                history.push('/login')
-            }, 2800)
 
-        }
-        console.log(history)
+        dispatch({ type: authConstants.REGISTER_USER_SUCCESS })
+        successNotification("Register Success")
+        history.push('/login')
+
+
+
+
     } catch (error) {
         console.log("🚀 ~ file: auth.js ~ line 40 ~ error", error)
+        console.log('register')
         dispatch({ type: authConstants.REGISTER_USER_FAIL, payload: error })
-        errorNotification("Register Failed")
+        errorNotification('Register Fail')
     }
 }
 
@@ -34,23 +34,18 @@ export const loginUser = (formData, history) => async (dispatch) => {
         dispatch({ type: authConstants.LOGIN_USER })
 
         const res = await login(formData)
-        
-        if (res.status == 200) {
-            
-            const userData = res.data.loginUser
 
-            dispatch({ type: authConstants.LOGIN_USER_SUCCESS, payload: userData })
-            successNotification("Login Successfully")
-            setTimeout(() => {
-                history.push('/exchange')
-                postExchange(res.data.loginUser._id)
-            }, 2800)
-        }
+        const userData = res.data.loginUser
+
+        dispatch({ type: authConstants.LOGIN_USER_SUCCESS, payload: userData })
+        successNotification("Login Successfully")
+        history.push('/exchange')
+
 
     } catch (error) {
         console.log("🚀 ~ file: auth.js ~ line 40 ~ error", error)
         dispatch({ type: authConstants.LOGIN_USER_FAIL, payload: error })
-        errorNotification("Login Failed")
+        errorNotification('Login Fail')
     }
 }
 

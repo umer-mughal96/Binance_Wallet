@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux';
 import { registerUser } from '../actions/auth';
 import { Avatar } from '@mui/material';
+import LoadingButton from '@mui/lab/LoadingButton';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -25,6 +26,8 @@ const Register = ({ history }) => {
 
     const theme = createTheme();
 
+    const [isloading, setIsloading] = useState(false)
+
     const {
         userSignUp,
         setUserSignUp,
@@ -39,6 +42,7 @@ const Register = ({ history }) => {
 
     const [disable, setDisable] = useState(false)
     const selector = useSelector(state => state.Auth)
+    const { auLoading } = selector
     const dispatch = useDispatch()
     console.log(selector)
 
@@ -47,7 +51,7 @@ const Register = ({ history }) => {
         console.log('submit')
         setDisable(selector.auLoading)
         if (!errors.email && !errors.password && !errors.name && !errors.confirmPassword) {
-
+            setIsloading(true)
             dispatch(registerUser(userSignUp, history))
         }
     };
@@ -164,7 +168,15 @@ const Register = ({ history }) => {
                                     <p className="help is-danger">{errors.confirmPassword}</p>
                                 )}
                             </Typography>
-                            <Button
+                            <LoadingButton type="submit"
+                                fullWidth
+                                variant="contained"
+                                sx={{ mt: 3, mb: 2 }} onClick={handleClick} loading={auLoading}
+
+                            >
+                                Sign Up
+                            </LoadingButton>
+                            {/* <Button
                                 type="submit"
                                 fullWidth
                                 variant="contained"
@@ -173,7 +185,7 @@ const Register = ({ history }) => {
                                 // disabled={!userSignUp.email || !userSignUp.password || !userSignUp.name || !userSignUp.confirmPassword || userSignUp.password !== userSignUp.confirmPassword || disable}
                             >
                                 Sign Up
-                            </Button>
+                            </Button> */}
                             <Grid container>
                                 <Grid item>
                                     <Link to="/login" className='same-links'>

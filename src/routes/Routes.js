@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 import Header from "../components/Header";
 import Spinner from '../components/loader/Spinner'
+import Activation from "../screens/Activation";
 import ForgetPass from "../screens/ForgetPass";
 import PassReset from "../screens/PassReset";
 // const Landing = lazy(()=> import('../screens/Landing'))
@@ -33,6 +34,7 @@ const Routes = withRouter(({ location }) => {
       <Suspense fallback={<Spinner />}>
         <Switch>
           <Route exact path="/" component={Register} />
+          <Route exact path="/activate/:id" component={Activation} />
           <Route path="/markets" component={Markets} />
           <Route path="/faq" component={Faq} />
           <Route path="/trade" component={Trade} />
