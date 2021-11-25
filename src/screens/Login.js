@@ -62,12 +62,10 @@ const Login = ({ history }) => {
         const handleSubmit = (event) => {
             event.preventDefault();
             setDisable(selector.auLoading)
-            dispatch(loginUser(userLogin, history))
-            
-              setUserLogin({
-                email: '',
-                password: ''
-              })
+            if (!errors.email && !errors.password) {
+
+                dispatch(loginUser(userLogin, history))
+            }
 
         };
 
@@ -155,7 +153,7 @@ const Login = ({ history }) => {
                                         variant="contained"
                                         sx={{ mt: 3, mb: 2 }}
                                         onClick={handleClick}
-                                        disabled={!userLogin.email || !userLogin.password || disable}
+                                        // disabled={!userLogin.email || !userLogin.password || disable}
                                     >
                                         Sign In
                                     </Button>

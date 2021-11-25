@@ -115,7 +115,7 @@ const ForgetPass = () => {
                                 variant="contained"
                                 sx={{ mt: 3, mb: 2 }}
                                 onClick={handleClick}
-                                disabled={!forgetPass.email || disable}
+                                // disabled={!forgetPass.email || disable}
                             >
                                 Send Password Reset Link
                             </Button>

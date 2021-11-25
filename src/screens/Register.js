@@ -46,14 +46,10 @@ const Register = ({ history }) => {
         event.preventDefault()
         console.log('submit')
         setDisable(selector.auLoading)
-        dispatch(registerUser(userSignUp, history))
+        if (!errors.email && !errors.password && !errors.name && !errors.confirmPassword) {
 
-        setUserSignUp({
-            name: '',
-            email: '',
-            password: '',
-            confirmPassword: ''
-          })
+            dispatch(registerUser(userSignUp, history))
+        }
     };
 
 
@@ -174,7 +170,7 @@ const Register = ({ history }) => {
                                 variant="contained"
                                 sx={{ mt: 3, mb: 2 }}
                                 onClick={handleClick}
-                                disabled={!userSignUp.email || !userSignUp.password || !userSignUp.name || !userSignUp.confirmPassword || userSignUp.password !== userSignUp.confirmPassword || disable}
+                                // disabled={!userSignUp.email || !userSignUp.password || !userSignUp.name || !userSignUp.confirmPassword || userSignUp.password !== userSignUp.confirmPassword || disable}
                             >
                                 Sign Up
                             </Button>

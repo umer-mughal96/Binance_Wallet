@@ -4,6 +4,7 @@ import { withRouter } from "react-router-dom";
 import Header from "../components/Header";
 import Spinner from '../components/loader/Spinner'
 import ForgetPass from "../screens/ForgetPass";
+import PassReset from "../screens/PassReset";
 // const Landing = lazy(()=> import('../screens/Landing'))
 const Markets = lazy(() => import('../screens/Markets'));
 const Payments = lazy(() => import('../screens/Dashboard/Payments'))
@@ -39,6 +40,7 @@ const Routes = withRouter(({ location }) => {
           <Route path="/exchange" component={Exchange} />
           <Route path="/login" component={Login} />
           <Route path="/forget" component={ForgetPass} />
+          <Route path="/reset" component={PassReset} />
           <Route path="/rewardcenter" component={RewardCenter} />
           <Route path="/security" component={Security} />
           <Route path="/settings" component={Settings} />

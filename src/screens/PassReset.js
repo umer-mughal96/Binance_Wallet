@@ -46,10 +46,6 @@ const PassReset = () => {
         setDisable(selector.auLoading)
         dispatch(passResetAction(passwordReset))
 
-        setpasswordReset({
-            password: '',
-            confirmPassword: ''
-        })
     };
 
     return (
@@ -131,7 +127,6 @@ const PassReset = () => {
                                 variant="contained"
                                 sx={{ mt: 3, mb: 2 }}
                                 onClick={handleClick}
-                                disabled={(!passwordReset.password && !passwordReset.confirmPassword) || disable}
                             >
                                 Reset Password
                             </Button>

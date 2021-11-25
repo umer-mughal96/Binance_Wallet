@@ -35,14 +35,23 @@ const useForm = (callback, validate) => {
   const handleClick = () => {
     setErrors(validate(userLogin));
     setErrors(validate(userSignUp))
+    setErrors(validate(forgetPass))
+    setErrors(validate(passwordReset))
     setIsSubmitting(true);
   };
+
+  useEffect(() => {
+    if (isSubmitting) {
+
+    }
+  }, [isSubmitting])
 
   const handleChange = (event) => {
     event.persist();
     setUserLogin({ ...userLogin, [event.target.name]: event.target.value });
     setUserSignUp({ ...userSignUp, [event.target.name]: event.target.value });
     setforgetPass({ ...forgetPass, [event.target.name]: event.target.value })
+    setpasswordReset({ ...passwordReset, [event.target.name]: event.target.value })
   };
 
   return {
