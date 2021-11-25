@@ -88,7 +88,7 @@ const ForgetPass = () => {
                             <LockOutlined />
                         </Avatar>
                         <Typography component="h1" variant="h5">
-                            Sign In
+                            Forget Password?
                         </Typography>
                         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 2, width: '100%' }}>
                             <TextField
@@ -115,14 +115,14 @@ const ForgetPass = () => {
                                 variant="contained"
                                 sx={{ mt: 3, mb: 2 }}
                                 onClick={handleClick}
-                                disabled={!userLogin.email || !userLogin.password || disable}
+                                disabled={!userLogin.email || disable}
                             >
-                                Sign In
+                                Send Password Reset Link
                             </Button>
                             <Grid container>
                                 <Grid item xs>
-                                    <Link to="#" variant="body2" className='same-links'>
-                                        Forgot password?
+                                    <Link to="/login" variant="body2" className='same-links'>
+                                        Already Have an account? Sign In
                                     </Link>
                                 </Grid>
                                 <Grid item>

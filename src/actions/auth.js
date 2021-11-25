@@ -1,6 +1,6 @@
 
 import { errorNotification, successNotification } from "../components/Toastify/Toastify";
-import { login, register, wallet } from '../services/auth'
+import { forgetPass, login, register, wallet } from '../services/auth'
 import * as authConstants from "./constants";
 
 
@@ -50,6 +50,25 @@ export const loginUser = (formData, history) => async (dispatch) => {
     } catch (error) {
         console.log("🚀 ~ file: auth.js ~ line 40 ~ error", error)
         dispatch({ type: authConstants.LOGIN_USER_FAIL, payload: formData })
+        errorNotification("Login Failed")
+    }
+}
+
+export const resetPass = (formData) => async (dispatch) => {
+
+    try {
+        dispatch({ type: authConstants.LOGIN_USER })
+
+        const res = await forgetPass(formData)
+        const userData = res.data
+
+        dispatch({ type: authConstants.LOGIN_USER_SUCCESS, payload: userData })
+        successNotification("Login Successfully")
+
+
+    } catch (error) {
+        console.log("🚀 ~ file: auth.js ~ line 40 ~ error", error)
+        dispatch({ type: authConstants.LOGIN_USER_FAIL, payload: error })
         errorNotification("Login Failed")
     }
 }
