@@ -1,13 +1,16 @@
 import React, { Fragment, lazy, Suspense } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 import Header from "../components/Header";
 import Spinner from '../components/loader/Spinner'
-import Activation from "../screens/Activation";
-import ForgetPass from "../screens/ForgetPass";
-import PassReset from "../screens/PassReset";
+// import Activation from "../screens/Activation";
+// import ForgetPass from "../screens/ForgetPass";
+// import PassReset from "../screens/PassReset";
 // const Landing = lazy(()=> import('../screens/Landing'))
 const Markets = lazy(() => import('../screens/Markets'));
+const Activation = lazy(() => import('../screens/Activation'));
+const ForgetPass = lazy(() => import('../screens/ForgetPass'));
+const PassReset = lazy(() => import('../screens/PassReset'));
 const Payments = lazy(() => import('../screens/Dashboard/Payments'))
 const Exchange = lazy(() => import('../screens/Dashboard/Exchange'))
 const RewardCenter = lazy(() => import('../screens/Dashboard/RewardCenter'))
@@ -22,19 +25,20 @@ const Login = lazy(() => import('../screens/Login'))
 
 const Routes = withRouter(({ location }) => {
   return (
-    <Fragment>
-      {location.pathname == "/payments" ||
+    <Router>
+      {/* {location.pathname == "/payments" ||
         location.pathname == "/exchange" ||
         location.pathname == "/rewardcenter" ||
         location.pathname == "/settings" ||
         location.pathname == "/taskcenter" ||
-        location.pathname == "/security" ? null : (
-        <Header />
-      )}
+        location.pathname == "/security" ? null : ( */}
+      {/* <Header /> */}
+      {/* )} */}
       <Suspense fallback={<Spinner />}>
+        <Header />
         <Switch>
           <Route exact path="/" component={Register} />
-          <Route exact path="/activate/:id" component={Activation} />
+          <Route path="/activate/:id" component={Activation} />
           <Route path="/markets" component={Markets} />
           <Route path="/faq" component={Faq} />
           <Route path="/trade" component={Trade} />
@@ -49,13 +53,13 @@ const Routes = withRouter(({ location }) => {
           <Route path="/taskcenter" component={TaskCenter} />
         </Switch>
       </Suspense>
-      {location.pathname == "/payments" ||
+      {/* {location.pathname == "/payments" ||
         location.pathname == "/exchange" ||
         location.pathname == "/rewardcenter" ||
         location.pathname == "/settings" ||
         location.pathname == "/taskcenter" ||
-        location.pathname == "/security" ? null : ""}
-    </Fragment>
+        location.pathname == "/security" ? null : ""} */}
+    </Router>
   );
 });
 
