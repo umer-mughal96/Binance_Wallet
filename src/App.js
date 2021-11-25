@@ -7,7 +7,8 @@ import axios from 'axios'
 
 function App() {
 
-    axios.defaults.withCredentials = true
+  axios.defaults.baseURL = 'http://192.168.100.104:5000/api'
+  console.log("🚀 ~ file: App.js ~ line 11 ~ App ~ process.env.REACT_APP_BASE_URL", process.env.REACT_APP_BASE_URL)
 
 
 

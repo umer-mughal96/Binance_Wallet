@@ -53,6 +53,7 @@ const Register = ({ history }) => {
         if (!errors.email && !errors.password && !errors.name && !errors.confirmPassword) {
             setIsloading(true)
             dispatch(registerUser(userSignUp, history))
+            console.log("🚀 ~ file: Register.js ~ line 56 ~ handleSubmit ~ userSignUp", userSignUp)
         }
     };
 

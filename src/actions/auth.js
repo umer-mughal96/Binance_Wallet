@@ -10,20 +10,17 @@ export const registerUser = (formData, history) => async dispatch => {
         dispatch({ type: authConstants.REGISTER_USER })
 
         const res = await register(formData)
-        console.log(res.data.msg)
+        console.log(res.data)
 
         dispatch({ type: authConstants.REGISTER_USER_SUCCESS })
         successNotification("Register Success")
         history.push('/login')
 
-
-
-
     } catch (error) {
         console.log("🚀 ~ file: auth.js ~ line 40 ~ error", error)
         console.log('register')
         dispatch({ type: authConstants.REGISTER_USER_FAIL, payload: error })
-        errorNotification('Register Fail')
+        errorNotification(error?.message)
     }
 }
 
@@ -101,18 +98,3 @@ export const passResetAction = (formData, history) => async (dispatch) => {
     }
 }
 
-export const postExchange = (userID) => async (dispatch) => {
-    console.log("function")
-    // const data = {
-    //     success: true,
-    //     msg: 'authorized'
-    // }
-
-    try {
-        const res = await wallet(userID)
-        console.log(res)
-        dispatch({ type: authConstants.POST_EXCHANGE, payload: res })
-    } catch (error) {
-
-    }
-}

@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import NsideBar from "../../components/NsideBar";
 import Sidebar from '../../components/SideBar';
-import { postExchange } from "../../actions/auth";
+// import { postExchange } from "../../actions/auth";
 import {useSelector} from 'react-redux'
 import { useDispatch } from "react-redux";
 
@@ -16,7 +16,7 @@ const Exchange = () => {
     setUserName(state.Auth.user.name)
   })
   const clickHandler = () =>{
-    dispatch(postExchange()) 
+    // dispatch(postExchange()) 
   }
   
   return (

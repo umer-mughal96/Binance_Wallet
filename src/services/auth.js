@@ -2,25 +2,21 @@ import axios from "axios"
 
 
 export const register = (formData) => {
-    return axios.post('https://rocksolidbackend.herokuapp.com/rocksolid/api/v1/auth/register',formData)
+    return axios.post(`/signup`, formData)
 }
 
 export const activation = (formData) => {
-    return axios.post('https://rocksolidbackend.herokuapp.com/rocksolid/api/v1/auth/register', formData)
+    return axios.post(`/activation`, formData)
 }
 
 export const login = (formData) =>{
-    return axios.post('https://rocksolidbackend.herokuapp.com/rocksolid/api/v1/auth/login', formData)
+    return axios.post(`/login`, formData)
 }
 
 export const forgetPass = (formData) => {
-    return axios.post('https://rocksolidbackend.herokuapp.com/rocksolid/api/v1/auth/login', formData)
+    return axios.post(`/forgot/password`, formData)
 }
 
 export const passReset = (formData) => {
-    return axios.post('https://rocksolidbackend.herokuapp.com/rocksolid/api/v1/auth/login', formData)
-}
-
-export const wallet = (userID) =>{
-    return axios.post('https://rocksolidbackend.herokuapp.com/rocksolid/api/v1/wallet/getbalance', userID)
+    return axios.post(`/password/reset`, formData)
 }

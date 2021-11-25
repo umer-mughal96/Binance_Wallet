@@ -19,7 +19,7 @@ export const Auth = ((state = initialState, action)=>{
             return{
                 ...state,
                 auLoading : false,
-                error : null
+                user: payload
             }
         case authConstants.REGISTER_USER_FAIL:
             return{
