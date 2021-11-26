@@ -30,19 +30,12 @@ const Trade = lazy(() => import('../screens/Trade'))
 const Routes = withRouter(({ location }) => {
   return (
     <Router>
-      {/* {location.pathname == "/payments" ||
-        location.pathname == "/exchange" ||
-        location.pathname == "/rewardcenter" ||
-        location.pathname == "/settings" ||
-        location.pathname == "/taskcenter" ||
-        location.pathname == "/security" ? null : ( */}
-      {/* <Header /> */}
-      {/* )} */}
+
       <Suspense fallback={<Spinner />}>
-        <Header />
+
         <Switch>
           <PublicRoute exact path="/" component={Register} />
-          <PublicRoute path="/activate/:id" component={Activation} />
+          <PublicRoute path="/activate" component={Activation} />
           <PrivateRoute path="/markets" component={Markets} />
           <PublicRoute path="/faq" component={Faq} />
           <PrivateRoute path="/trade" component={Trade} />
@@ -57,12 +50,7 @@ const Routes = withRouter(({ location }) => {
           <PrivateRoute path="/taskcenter" component={TaskCenter} />
         </Switch>
       </Suspense>
-      {/* {location.pathname == "/payments" ||
-        location.pathname == "/exchange" ||
-        location.pathname == "/rewardcenter" ||
-        location.pathname == "/settings" ||
-        location.pathname == "/taskcenter" ||
-        location.pathname == "/security" ? null : ""} */}
+
     </Router>
   );
 });

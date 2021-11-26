@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux'
+import Header from '../components/Header';
 
 const PublicRoute = ({ component: Component, ...rest }) => {
     const state = useSelector(state => state.Auth)
@@ -12,6 +13,7 @@ const PublicRoute = ({ component: Component, ...rest }) => {
         <Route {...rest} render={props => (
             !isLogin ?
                 <>
+                    <Header />
                     <Component {...props} />
                 </>
                 : <Redirect to="/exchange" />
