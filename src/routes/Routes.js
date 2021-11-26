@@ -5,14 +5,16 @@ import Header from "../components/Header";
 import Spinner from '../components/loader/Spinner'
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
-// import Activation from "../screens/Activation";
-// import ForgetPass from "../screens/ForgetPass";
-// import PassReset from "../screens/PassReset";
+import Activation from "../screens/Activation";
+import ForgetPass from "../screens/ForgetPass";
+import PassReset from "../screens/PassReset";
+import Login from '../screens/Login'
+import Register from '../screens/Register'
 // const Landing = lazy(()=> import('../screens/Landing'))
 const Markets = lazy(() => import('../screens/Markets'));
-const Activation = lazy(() => import('../screens/Activation'));
-const ForgetPass = lazy(() => import('../screens/ForgetPass'));
-const PassReset = lazy(() => import('../screens/PassReset'));
+// const Activation = lazy(() => import('../screens/Activation'));
+// const ForgetPass = lazy(() => import('../screens/ForgetPass'));
+// const PassReset = lazy(() => import('../screens/PassReset'));
 const Payments = lazy(() => import('../screens/Dashboard/Payments'))
 const Exchange = lazy(() => import('../screens/Dashboard/Exchange'))
 const RewardCenter = lazy(() => import('../screens/Dashboard/RewardCenter'))
@@ -21,8 +23,8 @@ const Settings = lazy(() => import('../screens/Dashboard/Settings'))
 const TaskCenter = lazy(() => import('../screens/Dashboard/TaskCenter'))
 const Faq = lazy(() => import('../screens/Faq'))
 const Trade = lazy(() => import('../screens/Trade'))
-const Register = lazy(() => import('../screens/Register'))
-const Login = lazy(() => import('../screens/Login'))
+// const Register = lazy(() => import('../screens/Register'))
+// const Login = lazy(() => import('../screens/Login'))
 
 
 const Routes = withRouter(({ location }) => {
