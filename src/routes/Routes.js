@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 import Header from "../components/Header";
 import Spinner from '../components/loader/Spinner'
+import PrivateRoute from "./PrivateRoute";
+import PublicRoute from "./PublicRoute";
 // import Activation from "../screens/Activation";
 // import ForgetPass from "../screens/ForgetPass";
 // import PassReset from "../screens/PassReset";
@@ -37,20 +39,20 @@ const Routes = withRouter(({ location }) => {
       <Suspense fallback={<Spinner />}>
         <Header />
         <Switch>
-          <Route exact path="/" component={Register} />
-          <Route path="/activate/:id" component={Activation} />
-          <Route path="/markets" component={Markets} />
-          <Route path="/faq" component={Faq} />
-          <Route path="/trade" component={Trade} />
-          <Route path="/payments" component={Payments} />
-          <Route path="/exchange" component={Exchange} />
-          <Route path="/login" component={Login} />
-          <Route path="/forget" component={ForgetPass} />
-          <Route path="/reset" component={PassReset} />
-          <Route path="/rewardcenter" component={RewardCenter} />
-          <Route path="/security" component={Security} />
-          <Route path="/settings" component={Settings} />
-          <Route path="/taskcenter" component={TaskCenter} />
+          <PrivateRoute exact path="/" component={Register} />
+          <PublicRoute path="/activate/:id" component={Activation} />
+          <PrivateRoute path="/markets" component={Markets} />
+          <PublicRoute path="/faq" component={Faq} />
+          <PrivateRoute path="/trade" component={Trade} />
+          <PrivateRoute path="/payments" component={Payments} />
+          <PrivateRoute path="/exchange" component={Exchange} />
+          <PublicRoute path="/login" component={Login} />
+          <PublicRoute path="/forget" component={ForgetPass} />
+          <PublicRoute path="/reset" component={PassReset} />
+          <PrivateRoute path="/rewardcenter" component={RewardCenter} />
+          <PrivateRoute path="/security" component={Security} />
+          <PrivateRoute path="/settings" component={Settings} />
+          <PrivateRoute path="/taskcenter" component={TaskCenter} />
         </Switch>
       </Suspense>
       {/* {location.pathname == "/payments" ||

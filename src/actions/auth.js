@@ -15,8 +15,8 @@ export const registerUser = (formData, history) => async dispatch => {
 
 
         dispatch({ type: authConstants.REGISTER_USER_SUCCESS })
-        successNotification("Register Success")
-        history.push('/login')
+        successNotification("An activation link has been sent on your email")
+        // history.push('/login')
 
     } catch (error) {
         console.log("🚀 ~ file: auth.js ~ line 40 ~ error", error?.response?.data?.message || error)

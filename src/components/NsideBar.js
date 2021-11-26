@@ -153,6 +153,22 @@ const NsideBar = withRouter(({ location, history }) => {
               Referral</span>{" "}
             </div>
           </li>
+          <li>
+            <div
+              className={
+                active == "referral" ? "sidebar-active" : "s-sidebar__nav-link"
+              }
+              onClick={(e) => {
+                window.localStorage.removeItem('persist:root')
+                window.location.href = '/login'
+              }}
+            >
+              {" "}
+              <span>
+                <img src="./asstes/logos/sidebar/Icon awesome-user-plus.svg" />
+                Log out</span>{" "}
+            </div>
+          </li>
         </ul>
       </nav>
     </div>
