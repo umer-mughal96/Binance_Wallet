@@ -39,7 +39,7 @@ const Routes = withRouter(({ location }) => {
       <Suspense fallback={<Spinner />}>
         <Header />
         <Switch>
-          <PrivateRoute exact path="/" component={Register} />
+          <PublicRoute exact path="/" component={Register} />
           <PublicRoute path="/activate/:id" component={Activation} />
           <PrivateRoute path="/markets" component={Markets} />
           <PublicRoute path="/faq" component={Faq} />

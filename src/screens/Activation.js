@@ -11,10 +11,10 @@ import { LockOutlined } from '@mui/icons-material';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Copyright from '../components/Copyright';
-import { useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import { activateUser } from '../actions/auth';
 
-const Activation = () => {
+const Activation = ({ history }) => {
 
 
     const theme = createTheme();
@@ -24,10 +24,10 @@ const Activation = () => {
     const dispatch = useDispatch()
     const handleSubmit = () => {
         const data = {
-            id,
+            token: id
 
         }
-        dispatch(activateUser(data))
+        dispatch(activateUser(data, history))
     }
 
     return (
@@ -75,7 +75,7 @@ const Activation = () => {
                                 sx={{ mt: 3, mb: 2 }} onClick={handleSubmit} loading={auLoading}
 
                             >
-                                Activate
+                                Click to Activate
                             </LoadingButton>
 
 

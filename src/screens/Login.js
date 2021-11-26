@@ -19,26 +19,12 @@ import { loginUser } from '../actions/auth'
 import validate from '../components/formValidation/FormValidation';
 import useForm from '../components/formValidation/useForm';
 import LoadingButton from '@mui/lab/LoadingButton';
+import Copyright from '../components/Copyright';
 
-function Copyright(props) {
-    console.log(props)
-    return (
-
-        <Typography variant="body2" color="text.secondary" align='center' {...props}>
-            {'Copyright © '}
-            <Link to='#' className='same-links'>
-                RockSolid Exchange
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
-
-const theme = createTheme();
 
 const Login = ({ history }) => {
 
+    const theme = createTheme();
         const {
             userLogin,
             setUserLogin,

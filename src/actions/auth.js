@@ -20,41 +20,33 @@ export const registerUser = (formData, history) => async dispatch => {
 
     } catch (error) {
         console.log("🚀 ~ file: auth.js ~ line 40 ~ error", error?.response?.data?.message || error)
-        console.log('register')
         dispatch({ type: authConstants.REGISTER_USER_FAIL, payload: error })
         errorNotification(error?.response?.data?.message || error.message)
     }
 }
 
-export const activateUser = (formData, history) => async dispatch => {
-
+export const activateUser = (formData, history) => async (dispatch) => {
     try {
-        dispatch({ type: authConstants.REGISTER_USER })
+        dispatch({ type: authConstants.LOGIN_USER })
 
         const res = await activation(formData)
 
-
-        dispatch({ type: authConstants.REGISTER_USER_SUCCESS })
-        successNotification("Link Activated")
-        history.push('/login')
+        const userData = res.data
+        dispatch({ type: authConstants.LOGIN_USER_SUCCESS, payload: userData })
+        successNotification("Login Successfully")
+        history.push('/exchange')
 
     } catch (error) {
-        console.log("🚀 ~ file: auth.js ~ line 40 ~ error", error)
-        dispatch({ type: authConstants.REGISTER_USER_FAIL, payload: error })
-        errorNotification('Activation Fail')
+        dispatch({ type: authConstants.LOGIN_USER_FAIL, payload: error })
+        errorNotification(error?.response?.data?.message || error.message)
     }
 }
 
 export const loginUser = (formData, history) => async (dispatch) => {
-
-    console.log(history)
     try {
         dispatch({ type: authConstants.LOGIN_USER })
 
         const res = await login(formData)
-        // const res = await axios.post(`/login`, formData)
-        // await axios.post(`/login`, formData).then(res => console.log(res)).catch(e => console.log(e))
-        console.log("🚀 ~ file: auth.js ~ line 54 ~ loginUser ~ res", res)
 
         const userData = res.data
         dispatch({ type: authConstants.LOGIN_USER_SUCCESS, payload: userData })

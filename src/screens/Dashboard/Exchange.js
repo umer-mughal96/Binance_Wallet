@@ -14,7 +14,8 @@ const Exchange = () => {
   const [userName, setUserName] = useState('')
   useEffect(()=>{
     setUserName(state?.Auth?.user?.name)
-  })
+
+  }, [])
   const clickHandler = () =>{
     // dispatch(postExchange()) 
   }
