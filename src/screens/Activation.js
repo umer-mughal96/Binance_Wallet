@@ -11,20 +11,21 @@ import { LockOutlined } from '@mui/icons-material';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Copyright from '../components/Copyright';
-import { useHistory, useParams } from 'react-router';
+import { useLocation } from 'react-router';
 import { activateUser } from '../actions/auth';
 
 const Activation = ({ history }) => {
 
 
     const theme = createTheme();
-    const { id } = useParams()
+    const search = useLocation().search;
+    const token = new URLSearchParams(search).get('token');
     const selector = useSelector(state => state.Auth)
     const { auLoading } = selector
     const dispatch = useDispatch()
     const handleSubmit = () => {
         const data = {
-            token: id
+            token,
 
         }
         dispatch(activateUser(data, history))
