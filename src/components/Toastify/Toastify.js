@@ -5,18 +5,18 @@ import 'react-toastify/dist/ReactToastify.css';
 toast.configure()
 
 export const successNotification = (msg) => {
-    toast.success(msg, {position: toast.POSITION.TOP_RIGHT, autoClose: 2800})
+    toast.success(msg, { position: toast.POSITION.TOP_RIGHT, autoClose: 5000 })
 }
 
 export const errorNotification = (msg) => {
-    toast.error(msg, {position: toast.POSITION.TOP_RIGHT, autoClose: 2800})
+    toast.error(msg, { position: toast.POSITION.TOP_RIGHT, autoClose: 5000 })
 }
     
 export const infoNotification = (msg) =>  {
-    toast.info(msg, {position: toast.POSITION.TOP_RIGHT, autoClose: 2800})
+    toast.info(msg, { position: toast.POSITION.TOP_RIGHT, autoClose: 5000 })
 }
 
 export const warningNotification = (msg) =>  {
-    toast.warning(msg, {position: toast.POSITION.TOP_RIGHT, autoClose: 2800})
+    toast.warning(msg, { position: toast.POSITION.TOP_RIGHT, autoClose: 5000 })
 }
 
