@@ -39,6 +39,7 @@ const PassReset = ({ history }) => {
     const dispatch = useDispatch()
     const search = useLocation().search;
     const token = new URLSearchParams(search).get('token');
+    console.log("🚀 ~ file: PassReset.js ~ line 42 ~ PassReset ~ token", token)
     const selector = useSelector(state => state.Auth)
     const { auLoading } = selector
 
@@ -46,8 +47,8 @@ const PassReset = ({ history }) => {
         event.preventDefault()
         console.log('submit')
         const data = {
-            ...passwordReset,
-            token,
+            resetPasswordLink: token,
+            newPassword: passwordReset.password
         }
         if (!errors.password && !errors.confirmPassword) {
 

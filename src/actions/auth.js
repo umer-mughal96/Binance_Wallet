@@ -83,7 +83,9 @@ export const forgetPassAction = (formData) => async (dispatch) => {
 export const passResetAction = (formData, history) => async (dispatch) => {
 
     try {
+        dispatch({ type: authConstants.REGISTER_USER })
         const res = await passReset(formData)
+        console.log("🚀 ~ file: auth.js ~ line 88 ~ passResetAction ~ formData", formData)
         const userData = res.data
         console.log(userData)
         successNotification("Password is changes successfully")
