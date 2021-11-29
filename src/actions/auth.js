@@ -64,17 +64,18 @@ export const loginUser = (formData, history) => async (dispatch) => {
 export const forgetPassAction = (formData) => async (dispatch) => {
 
     try {
-        dispatch({ type: authConstants.LOGIN_USER })
 
+        dispatch({ type: authConstants.LOGIN_USER })
         const res = await forgetPass(formData)
         const userData = res.data
-        console.log(userData)
+        console.log("🚀 ~ file: auth.js ~ line 71 ~ forgetPassAction ~ userData", userData)
         successNotification("Password reset link has been sent on your email")
-
+        dispatch({ type: authConstants.REGISTER_USER_SUCCESS })
 
     } catch (error) {
         console.log("🚀 ~ file: auth.js ~ line 40 ~ error", error)
-        errorNotification(error)
+        dispatch({ type: authConstants.REGISTER_USER_FAIL, payload: error })
+        errorNotification(error?.response?.data?.message || error.message)
     }
 }
 
@@ -85,12 +86,13 @@ export const passResetAction = (formData, history) => async (dispatch) => {
         const res = await passReset(formData)
         const userData = res.data
         console.log(userData)
+        successNotification("Password is changes successfully")
+        dispatch({ type: authConstants.REGISTER_USER_SUCCESS })
         history.push('/login')
-
-
     } catch (error) {
         console.log("🚀 ~ file: auth.js ~ line 40 ~ error", error)
-        errorNotification(error)
+        dispatch({ type: authConstants.REGISTER_USER_FAIL, payload: error })
+        errorNotification(error?.response?.data?.message || error.message)
     }
 }
 

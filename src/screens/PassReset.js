@@ -19,8 +19,10 @@ import { loginUser, passResetAction } from '../actions/auth'
 import validate from '../components/formValidation/FormValidation';
 import useForm from '../components/formValidation/useForm';
 import Copyright from '../components/Copyright';
+import { useLocation } from 'react-router';
+import LoadingButton from '@mui/lab/LoadingButton';
 
-const PassReset = () => {
+const PassReset = ({ history }) => {
     const theme = createTheme();
 
     const {
@@ -34,17 +36,23 @@ const PassReset = () => {
     function login() {
         console.log('No errors, submit callback called!')
     }
-
-    const [disable, setDisable] = useState(false)
+    const dispatch = useDispatch()
+    const search = useLocation().search;
+    const token = new URLSearchParams(search).get('token');
     const selector = useSelector(state => state.Auth)
-    const dispatch = useDispatch(passResetAction(passwordReset))
-    console.log(selector)
+    const { auLoading } = selector
 
     const handleSubmit = (event) => {
         event.preventDefault()
         console.log('submit')
-        setDisable(selector.auLoading)
-        dispatch(passResetAction(passwordReset))
+        const data = {
+            ...passwordReset,
+            token,
+        }
+        if (!errors.password && !errors.confirmPassword) {
+
+            dispatch(passResetAction(data, history))
+        }
 
     };
 
@@ -121,15 +129,14 @@ const PassReset = () => {
                                     <p className="help is-danger">{errors.confirmPassword}</p>
                                 )}
                             </Typography>
-                            <Button
-                                type="submit"
+                            <LoadingButton type="submit"
                                 fullWidth
                                 variant="contained"
-                                sx={{ mt: 3, mb: 2 }}
-                                onClick={handleClick}
+                                sx={{ mt: 3, mb: 2 }} onClick={handleClick} loading={auLoading}
+
                             >
                                 Reset Password
-                            </Button>
+                            </LoadingButton>
                             <Grid container>
                                 <Grid item xs>
                                     <Link to="/login" variant="body2" className='same-links'>

@@ -19,6 +19,7 @@ import { forgetPassAction, loginUser } from '../actions/auth'
 import validate from '../components/formValidation/FormValidation';
 import useForm from '../components/formValidation/useForm';
 import Copyright from '../components/Copyright';
+import { LoadingButton } from '@mui/lab';
 
 const ForgetPass = () => {
     const theme = createTheme();
@@ -46,12 +47,11 @@ const ForgetPass = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        setDisable(selector.auLoading)
-        dispatch(forgetPassAction(forgetPass))
+        if (!errors.email) {
+            dispatch(forgetPassAction(forgetPass))
+        }
 
-        setforgetPass({
-            email: '',
-        })
+
 
     };
     return (
@@ -109,16 +109,14 @@ const ForgetPass = () => {
                                     <p className="help is-danger">{errors.email}</p>
                                 )}
                             </Typography>
-                            <Button
-                                type="submit"
+                            <LoadingButton type="submit"
                                 fullWidth
                                 variant="contained"
-                                sx={{ mt: 3, mb: 2 }}
-                                onClick={handleClick}
-                                // disabled={!forgetPass.email || disable}
+                                sx={{ mt: 3, mb: 2 }} onClick={handleClick} loading={auLoading}
+
                             >
                                 Send Password Reset Link
-                            </Button>
+                            </LoadingButton>
                             <Grid container>
                                 <Grid item xs>
                                     <Link to="/login" variant="body2" className='same-links'>

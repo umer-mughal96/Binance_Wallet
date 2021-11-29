@@ -14,9 +14,9 @@ export const login = async (formData) => {
 }
 
 export const forgetPass = async (formData) => {
-    return await axios.post(`/forgot/password`, formData)
+    return await axios.put(`/forgot/password`, formData)
 }
 
 export const passReset = async (formData) => {
-    return await axios.post(`/password/reset`, formData)
+    return await axios.put(`/password/reset`, formData)
 }
